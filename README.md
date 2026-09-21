@@ -80,13 +80,18 @@ rather than carried over — flagging them here in case they were intentional:
   Facebook/CDN export name, unlike Rachel's professional-shoot filename
   (`A07A5207-copy-scaled-1...`). Worth confirming this is actually the
   current, intended photo before launch.
-- **Services page**: has no real photography in the source at all — just
-  logos, the SWAM badge, and a background *video* clip whose filename
-  (`magnific_create-a-video_UyVgRfGwny.mp4`) looks like an unrenamed
-  AI-generated/stock asset, never cleaned up. Rather than embed a
-  probably-not-final video, replaced that section with a styled quote
-  panel. If you have real photography or a finished video for this page,
-  send it over and I'll swap it in.
+- **Services page**: the "Crew" section's background video
+  (`magnific_create-a-video_UyVgRfGwny.mp4`) is now wired in as a real
+  `<video autoplay muted loop>` behind the Gino Wickman quote panel (you
+  confirmed it's a real, intended asset). **Please verify it actually plays
+  on the live deployed site** — in this sandbox, neither of my two local
+  test servers (Python's `http.server`, `wrangler pages dev`) sends the
+  `Content-Length`/Range headers Chrome's `<video>` element wants, so I
+  could only confirm the file itself downloads correctly and byte-matches,
+  not that it renders. Cloudflare's real edge should serve static assets
+  with proper headers, but I have no way to confirm that from here. If it
+  doesn't play, the panel still looks fine — it falls back to a solid navy
+  background.
 - **Services page**: several section "headings" in the export (`The
   Shipyard`, `The Crew`, the AI-workflows heading, `Build a Seaworthy
   Legacy`) were actually plain `<p>` tags, not real heading elements — bad
@@ -109,6 +114,24 @@ rather than carried over — flagging them here in case they were intentional:
   at charting the course."` ) — read as broken/truncated copy. Removed the
   orphaned quote mark rather than guess what was originally meant to be
   quoted.
+
+## Hero and footer background images
+
+Home already had a real photo slideshow in its hero; About, Services, and
+Contact originally shipped with flat navy hero backgrounds (no photo) since
+none was captured during the initial page-by-page rebuild. All three now
+have a real photo background (Ken Burns zoom, dark gradient overlay, grid
+lines, animated waves — the same treatment as Home), using photos you
+provided directly:
+
+- About hero: `hero-2.webp`
+- Services hero: `hero-3.webp`
+- Contact hero: `2026-hero20-left.webp`
+
+The `<footer>` on all four pages also now has a background image
+(`2026-hero4.webp`, a dark aerial wave-wake photo) with a dark gradient
+overlay tuned to keep the white footer text and links fully legible while
+the texture still reads clearly.
 
 ## Deploying to Cloudflare Pages
 
@@ -138,10 +161,22 @@ backend, no Cloudflare Function, no secrets to configure. The form keeps
 working unchanged if the site is ever moved to a different Cloudflare
 account or host entirely.
 
-**Before going live**, confirm the `access_key` hidden input in the form
-belongs to *your* Web3Forms account (not a leftover from a prior draft) —
-generate a fresh key at web3forms.com/profile if you're unsure, and swap it
-in.
+**Action needed**: the `access_key` currently embedded in `contact.html`
+(`8efefabb-602d-4061-8cdc-356fcc99fc33`) is a leftover from an earlier
+draft file, not something generated for this project — there's no
+confirmed Web3Forms account behind it. To get a real one:
+
+1. Go to https://web3forms.com and enter the email address you want
+   assessment submissions delivered to (e.g. `contact@brightworkconsult.com`).
+2. Web3Forms emails you a free Access Key — no account/password needed for
+   the free tier.
+3. Replace the `access_key` value in the hidden input near the top of the
+   `<form id="assessment-form">` block in **both** `contact.html` (line
+   ~421) — tell me the new key and I'll swap it in, or edit it directly
+   yourself and push.
+
+Until this is a real key, form submissions will fail silently (Web3Forms
+will reject the unrecognized key).
 
 **`contact-resend.html` (not linked from nav yet) — Cloudflare Pages
 Function + Resend.** For when you're ready to move onto Cloudflare's own
