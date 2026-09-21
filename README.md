@@ -7,7 +7,10 @@ Fonts as the only external dependency.
 
 ## Status
 
-Being rebuilt page by page. Progress:
+Being rebuilt page by page, using `reference/wordpress-export/` (the actual
+live WordPress/Elementor export) as the source of truth for content, images,
+and effects — not the earlier draft layout files, which predated real
+photography and the wave/star effects. Progress:
 
 - [x] `index.html` — Home
 - [ ] `about.html` — About
@@ -19,10 +22,49 @@ Being rebuilt page by page. Progress:
 
 ## Brand
 
-Palette matches the live WordPress site's CSS (navy `#08182A`, brass
-`#C4973A`/`#B8922A`, cream `#F3F0E7`), not the teal/blue draft palette the
-source files originally shipped with. Fonts: Cormorant Garamond (display) +
-Barlow (body), loaded from Google Fonts.
+Palette matches the live WordPress site's CSS (navy `#08182A`, navy-mid
+`#1A3550`, navy-dark `#0F2035`, brass `#C4973A`, gold `#D4A843`/`#C8A96E`,
+sky-blue accent `#689AE2` used only in the hero). Fonts: Cormorant Garamond
+(display) + Barlow (body), loaded from Google Fonts. Each page is clean
+semantic HTML/CSS/JS — not a port of Elementor's markup, which is deeply
+nested and depends on theme/plugin stylesheets that add no visual value once
+rebuilt directly.
+
+## Images
+
+Real site photos and logos aren't checked into this repo yet — Claude's
+sandbox can't reach brightworkconsult.com to download them. Run this once,
+locally, on a machine with normal internet access:
+
+```
+./scripts/fetch-assets.sh
+```
+
+It downloads everything `index.html` currently references into
+`assets/images/`. Until you run it, the hero slideshow and logos will show as
+broken images.
+
+## Corrections made vs. the live WordPress site
+
+A few real bugs/inconsistencies turned up while porting Home and were fixed
+rather than carried over — flagging them here in case they were intentional:
+
+- **Phone number mismatch**: the page's JSON-LD schema listed
+  `434-282-7215`, but the footer/CTA buttons show `434-825-9740`. Used
+  `434-825-9740` everywhere (what visitors actually see and call) — confirm
+  this is the right number.
+- Two "Goal: ..." buttons in the Brightwork Split section had `href=""`
+  (dead links) — rebuilt as non-clickable badges instead, matching what they
+  visually read as.
+- A CSS rule (`.value-card::after`) referenced color `c9a84c` without its
+  leading `#` — invalid CSS, silently ignored by browsers. Fixed to a real
+  gold value.
+- The 5-step process grid was set to a fixed 3-column layout — same on the
+  live site, which likely causes the last two steps to wrap awkwardly. Made
+  it a proper 5-column layout instead.
+- The hero slideshow image URLs included a stale `/staging/2433/` path
+  segment not used by any other image on the site — stripped it to match the
+  production upload path convention (see `scripts/fetch-assets.sh`).
 
 ## Deploying to Cloudflare Pages
 
