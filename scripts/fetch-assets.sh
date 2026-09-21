@@ -52,5 +52,8 @@ fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/Screenshot-2026-
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/A07A5207-copy-scaled-1-560x560.jpg" assets/images/team-rachel.jpg
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/28138_390197755495_538260495_4550325_5837766_n-560x480.jpg" assets/images/team-che.jpg
 
+# Services page OG image
+fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/Screenshot-2026-06-02-101713.jpg" assets/images/services-og-image.jpg
+
 echo
 echo "Done. Review assets/images/, then: git add assets/images && git commit && git push"

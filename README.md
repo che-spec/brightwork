@@ -14,9 +14,8 @@ photography and the wave/star effects. Progress:
 
 - [x] `index.html` — Home
 - [x] `about.html` — About
-- [ ] `services.html` — Services (new page; the old WordPress nav pointed at a
-      file that was never provided, so this is being written from scratch
-      using `reference/wordpress-export/our-services.html` as source copy)
+- [x] `services.html` — Services (rebuilt from
+      `reference/wordpress-export/our-services.html`)
 - [ ] `contact.html` — Contact (uses Web3Forms for submissions — no server
       function needed)
 
@@ -80,6 +79,24 @@ rather than carried over — flagging them here in case they were intentional:
   Facebook/CDN export name, unlike Rachel's professional-shoot filename
   (`A07A5207-copy-scaled-1...`). Worth confirming this is actually the
   current, intended photo before launch.
+- **Services page**: has no real photography in the source at all — just
+  logos, the SWAM badge, and a background *video* clip whose filename
+  (`magnific_create-a-video_UyVgRfGwny.mp4`) looks like an unrenamed
+  AI-generated/stock asset, never cleaned up. Rather than embed a
+  probably-not-final video, replaced that section with a styled quote
+  panel. If you have real photography or a finished video for this page,
+  send it over and I'll swap it in.
+- **Services page**: several section "headings" in the export (`The
+  Shipyard`, `The Crew`, the AI-workflows heading, `Build a Seaworthy
+  Legacy`) were actually plain `<p>` tags, not real heading elements — bad
+  for SEO/accessibility. Rebuilt as real `<h2>`s.
+- **Services page**: multiple info-box groups reused the exact same icon
+  for every item in the group (all 4 "Shipyard" boxes, all 3 "AI Workflows"
+  boxes), and the "Coming Soon" badge reused an unrelated people-icon from
+  elsewhere on the page. Gave each item its own icon instead.
+- **Services page**: one eyebrow label used a slightly different gold than
+  every other eyebrow on the page (`#D4A843` vs. `#C8A96E`) — normalized to
+  match.
 
 ## Deploying to Cloudflare Pages
 
