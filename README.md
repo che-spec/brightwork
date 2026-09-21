@@ -16,8 +16,9 @@ photography and the wave/star effects. Progress:
 - [x] `about.html` — About
 - [x] `services.html` — Services (rebuilt from
       `reference/wordpress-export/our-services.html`)
-- [ ] `contact.html` — Contact (uses Web3Forms for submissions — no server
-      function needed)
+- [x] `contact.html` — Contact (Web3Forms backend — no server function
+      needed). `contact-resend.html` is a second variant with a Cloudflare
+      Pages Function + Resend backend instead — see "Contact form" below.
 
 ## Brand
 
@@ -97,6 +98,17 @@ rather than carried over — flagging them here in case they were intentional:
 - **Services page**: one eyebrow label used a slightly different gold than
   every other eyebrow on the page (`#D4A843` vs. `#C8A96E`) — normalized to
   match.
+- **Contact page**: same phone-number mismatch pattern as Home/About —
+  JSON-LD schema said `434-282-7215`, visible buttons/footer say
+  `434-825-9740`. Used the visible number consistently, as with the other
+  pages.
+- **Contact page**: all 4 "What Happens Next" trust bullets reused the
+  exact same icon in the source. Gave each its own icon instead.
+- **Contact page**: the closing-CTA paragraph had a stray, unmatched closing
+  curly quote with no opening quote anywhere in the sentence (`We're experts
+  at charting the course."` ) — read as broken/truncated copy. Removed the
+  orphaned quote mark rather than guess what was originally meant to be
+  quoted.
 
 ## Deploying to Cloudflare Pages
 
@@ -106,19 +118,62 @@ than the repo root.
 1. In the Cloudflare dashboard, create a new Pages project connected to this
    repo (or this branch).
 2. Build command: none. Build output directory: `/` (repo root).
-3. Deploy. No environment variables or secrets are required.
+3. Deploy. Cloudflare Pages auto-detects `functions/api/contact.js` and
+   deploys it as a Pages Function — no extra config needed for it to exist,
+   though it won't actually send email until the environment variables in
+   "Contact form" below are set. No environment variables are required for
+   the rest of the site.
 
-## Contact form
+## Contact form: two variants
 
-`contact.html` posts directly to Web3Forms (https://web3forms.com) from the
-browser — no backend, no Cloudflare Function, no secrets to configure. This
-also means the form keeps working unchanged if the site is ever moved to a
-different Cloudflare account or host.
+Both post the same 13-field assessment form (name, email, phone, business,
+preferred contact method, best time, industry, revenue, employees,
+challenges, timeline, notes, newsletter opt-in) to `contact@brightworkconsult.com`.
+They're visually and functionally identical from a visitor's perspective —
+only the backend differs.
+
+**`contact.html` (linked from nav — the current default) — Web3Forms.**
+Posts directly to Web3Forms (https://web3forms.com) from the browser — no
+backend, no Cloudflare Function, no secrets to configure. The form keeps
+working unchanged if the site is ever moved to a different Cloudflare
+account or host entirely.
 
 **Before going live**, confirm the `access_key` hidden input in the form
 belongs to *your* Web3Forms account (not a leftover from a prior draft) —
 generate a fresh key at web3forms.com/profile if you're unsure, and swap it
 in.
+
+**`contact-resend.html` (not linked from nav yet) — Cloudflare Pages
+Function + Resend.** For when you're ready to move onto Cloudflare's own
+native tools instead of a third-party form service. The form posts to
+`/api/contact` (`functions/api/contact.js` in this repo), which sends the
+email via Resend's API — entirely inside your Cloudflare account, no
+third-party form host involved.
+
+To activate it:
+1. Sign up at resend.com and verify a sending domain (e.g. a subdomain of
+   brightworkconsult.com) — Resend won't send from an unverified domain.
+2. Create an API key at resend.com/api-keys.
+3. In the Cloudflare Pages project's dashboard → Settings → Environment
+   variables, add:
+   - `RESEND_API_KEY` (as a **secret**) — the key from step 2
+   - `CONTACT_FROM_EMAIL` (plain variable) — e.g.
+     `Brightwork Website <notifications@brightworkconsult.com>`, using your
+     verified domain
+   - `CONTACT_TO_EMAIL` (plain variable, optional) — defaults to
+     `contact@brightworkconsult.com` if omitted
+4. Redeploy (environment variable changes require a new deployment to take
+   effect).
+
+Tested locally end-to-end with `npx wrangler pages dev .` (form validation,
+honeypot, and the full Resend request path all verified working; the actual
+email send needs a real Resend key to confirm, which I don't have).
+
+**Switching the primary contact page later**: once you're happy with the
+Resend variant, either swap the nav links across all four pages to point at
+`/contact-resend.html` instead of `/contact.html`, or just replace
+`contact.html`'s contents with `contact-resend.html`'s and delete the
+duplicate — whichever you'd rather do.
 
 ## Before this goes fully live
 

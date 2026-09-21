@@ -1,0 +1,3 @@
+# Local Cloudflare Pages Functions dev state (wrangler pages dev)
+.wrangler/
+.dev.vars
