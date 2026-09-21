@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Shipwright's Method | Brightwork Consulting</title>
+  <meta name="description" content="Brightwork is your Operational Architect—building high-performance business infrastructure through deep-dive intelligence, seaworthy operations, and collaborative excellence.">
+  <meta name="keywords" content="operational consulting, business architecture, AI workflows, project management, operational strategy, business operations, fractional leadership">
+  <meta name="author" content="Brightwork Consulting">
+<meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://brightworkconsult.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Shipwright's Method | Brightwork Consulting">
+  <meta property="og:description" content="We don't patch holes—we build seaworthy businesses. Your Operational Architect for structural growth.">
+  <meta property="og:image" content="https://brightworkconsult.com/og-image.jpg">
+  <meta property="og:url" content="https://brightworkconsult.com/">
+  <meta property="og:site_name" content="Brightwork Consulting">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Shipwright's Method | Brightwork Consulting">
+  <meta name="twitter:description" content="We don't patch holes—we build seaworthy businesses. Your Operational Architect for structural growth.">
+  <meta name="twitter:image" content="https://brightworkconsult.com/og-image.jpg">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsult.com",
+        "description": "Operational architects who build high-performance business infrastructure through deep-dive intelligence, seaworthy operations, and collaborative excellence.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "434-282-7215",
+          "contactType": "customer service",
+          "email": "contact@brightworkconsult.com"
+        }
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsult.com",
+        "telephone": "434-282-7215",
+        "email": "contact@brightworkconsult.com",
+        "description": "Operational consulting firm specializing in business architecture, AI workflow automation, and fractional leadership.",
+        "priceRange": "$$"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsult.com"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --color-bg:        #F2F4F6;
+      --color-surface:   #FFFFFF;
+      --color-navy:      #1A3550;
+      --color-primary:   #1E4976;
+      --color-secondary: #3D9B9A;
+      --color-accent:    #C8A96E;
+      --color-text:      #1C2B3A;
+      --color-muted:     #7A8F9E;
+      --color-fog:       #E8ECF0;
+      --color-divider:   #D0D8DF;
+      --font-display:    'Cormorant Garamond', Georgia, serif;
+      --font-body:       'Barlow', system-ui, sans-serif;
+      --nav-h:           72px;
+      --radius:          6px;
+      --shadow-sm:       0 2px 12px rgba(26,53,80,0.07);
+      --shadow-md:       0 8px 32px rgba(26,53,80,0.11);
+      --shadow-lg:       0 20px 60px rgba(26,53,80,0.14);
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── Typography Scale ─── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--color-navy);
+    }
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 500; }
+    h4 { font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 600; }
+    p { font-size: clamp(0.95rem, 1.5vw, 1.05rem); color: var(--color-text); }
+
+    /* ─── Scroll Progress Bar ─── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+      z-index: 9999; transition: width 0.1s linear;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(242, 244, 246, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      display: flex; align-items: center;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      z-index: 1000;
+      transition: background 0.3s, border-color 0.3s, height 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      height: 60px;
+      background: rgba(242, 244, 246, 0.97);
+      border-color: var(--color-divider);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--color-navy);
+      letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-brand .anchor-icon {
+      width: 22px; height: 22px;
+      color: var(--color-secondary);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--color-muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--color-secondary);
+      transform: scaleX(0); transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--color-navy); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--color-primary); color: #fff !important;
+      padding: 0.5rem 1.25rem; border-radius: var(--radius);
+      font-size: 0.8rem !important; font-weight: 600 !important;
+      letter-spacing: 0.05em !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--color-navy) !important; transform: translateY(-1px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 8px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--color-navy); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed; inset: 0; background: rgba(242,244,246,0.98);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem; z-index: 999;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .mobile-drawer.open { opacity: 1; pointer-events: all; }
+    .mobile-drawer a {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 400;
+      color: var(--color-navy); transition: color 0.2s;
+    }
+    .mobile-drawer a:hover { color: var(--color-secondary); }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: calc(var(--nav-h) + 4rem) clamp(1.5rem, 5vw, 4rem) 6rem;
+      position: relative; overflow: hidden;
+      background: var(--color-bg);
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      overflow: hidden;
+    }
+    /* Subtle wave pattern */
+    .hero-bg::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 420px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 420' preserveAspectRatio='none'%3E%3Cpath d='M0,280 C240,340 480,200 720,260 C960,320 1200,180 1440,240 L1440,420 L0,420 Z' fill='%231E4976' opacity='0.05'/%3E%3Cpath d='M0,320 C360,260 720,380 1080,300 C1260,260 1380,340 1440,360 L1440,420 L0,420 Z' fill='%233D9B9A' opacity='0.06'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    }
+    /* Grid dots */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(26,53,80,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-secondary); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--color-secondary);
+    }
+    .hero h1 {
+      max-width: 14ch; margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--color-secondary); }
+    .hero-sub {
+      max-width: 52ch; font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--color-muted); margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--color-primary); color: #fff;
+      padding: 0.85rem 2rem; border-radius: var(--radius);
+      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary:hover {
+      background: var(--color-navy); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,53,80,0.2);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--color-primary);
+      border: 1.5px solid var(--color-primary);
+      padding: 0.85rem 2rem; border-radius: var(--radius);
+      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { background: var(--color-primary); color: #fff; }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2rem; border-top: 1px solid var(--color-divider);
+    }
+    .hero-stat-label {
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--color-muted); margin-top: 0.25rem;
+    }
+    .hero-stat-value {
+      font-family: var(--font-display); font-size: 2rem;
+      font-weight: 600; color: var(--color-navy);
+    }
+
+    /* ─── Section Foundations ─── */
+    section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .section-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-secondary); margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 20px; height: 1px;
+      background: var(--color-secondary);
+    }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header p {
+      max-width: 58ch; margin-top: 1rem;
+      color: var(--color-muted); font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: 1.7;
+    }
+
+    /* ─── Wave Divider ─── */
+    .wave-divider {
+      line-height: 0; overflow: hidden;
+    }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ─── Method Section ─── */
+    #method { background: var(--color-surface); }
+    .method-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start; margin-bottom: 4rem;
+    }
+    .method-intro-text { }
+    .method-intro-quote {
+      background: var(--color-bg);
+      border-left: 3px solid var(--color-secondary);
+      padding: 2rem 2rem 2rem 1.75rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .method-intro-quote p {
+      font-family: var(--font-display); font-size: 1.35rem;
+      font-style: italic; font-weight: 300; line-height: 1.6;
+      color: var(--color-navy);
+    }
+    .method-intro-quote cite {
+      display: block; margin-top: 1rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--color-secondary);
+      font-style: normal;
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .pillar-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-divider);
+      border-radius: 10px; padding: 2.25rem;
+      position: relative; overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    }
+    .pillar-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .pillar-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-4px);
+      border-color: rgba(61,155,154,0.3);
+    }
+    .pillar-card:hover::before { opacity: 1; }
+    .pillar-number {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 300;
+      color: var(--color-divider); line-height: 1; margin-bottom: 1.25rem;
+    }
+    .pillar-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, rgba(61,155,154,0.12), rgba(30,73,118,0.08));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--color-secondary);
+    }
+    .pillar-icon svg { width: 22px; height: 22px; }
+    .pillar-card h4 { margin-bottom: 0.75rem; color: var(--color-navy); }
+    .pillar-card p { font-size: 0.95rem; color: var(--color-muted); line-height: 1.65; }
+
+    /* ─── Shipyard Section ─── */
+    #shipyard {
+      background: var(--color-navy);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    #shipyard::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 70% 50%, rgba(61,155,154,0.12) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, rgba(200,169,110,0.08) 0%, transparent 50%);
+    }
+    #shipyard .section-inner { position: relative; z-index: 1; }
+    #shipyard h2, #shipyard h3, #shipyard h4 { color: #fff; }
+    #shipyard p { color: rgba(255,255,255,0.72); }
+    #shipyard .section-label { color: var(--color-secondary); }
+    #shipyard .section-label::before { background: var(--color-secondary); }
+
+    .shipyard-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .shipyard-text h2 { margin-bottom: 1.25rem; }
+    .shipyard-text > p { margin-bottom: 2rem; }
+    .shipyard-cta-block {
+      margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .shipyard-contact {
+      display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;
+    }
+    .shipyard-contact a {
+      color: rgba(255,255,255,0.8); font-size: 0.95rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .shipyard-contact a:hover { color: var(--color-secondary); }
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #fff; color: var(--color-primary);
+      padding: 0.85rem 2rem; border-radius: var(--radius);
+      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-light:hover { background: var(--color-secondary); color: #fff; transform: translateY(-2px); }
+
+    .benefits-list {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .benefit-item {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: background 0.3s;
+    }
+    .benefit-item:hover { background: rgba(255,255,255,0.08); }
+    .benefit-icon {
+      flex-shrink: 0; width: 40px; height: 40px;
+      background: rgba(61,155,154,0.18); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-secondary);
+    }
+    .benefit-icon svg { width: 18px; height: 18px; }
+    .benefit-item h4 { font-size: 1rem; margin-bottom: 0.3rem; color: #fff; }
+    .benefit-item p { font-size: 0.9rem; line-height: 1.6; }
+
+    /* ─── Crew Section ─── */
+    #crew { background: var(--color-bg); }
+    .crew-layout {
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start;
+    }
+    .crew-img-placeholder {
+      position: relative; width: 100%; padding-bottom: 110%;
+      background: linear-gradient(135deg, var(--color-fog), color-mix(in srgb, var(--color-secondary) 15%, var(--color-fog)));
+      border: 2px dashed color-mix(in srgb, var(--color-secondary) 35%, transparent);
+      border-radius: 12px; overflow: hidden;
+    }
+    .crew-img-placeholder .ph-inner {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.75rem;
+      color: var(--color-muted);
+    }
+    .crew-img-placeholder svg { width: 40px; height: 40px; opacity: 0.5; }
+    .crew-img-placeholder .ph-label { font-size: 0.85rem; font-weight: 500; }
+    .crew-img-placeholder .ph-size { font-size: 0.75rem; opacity: 0.7; }
+    .crew-text h2 { margin-bottom: 1.25rem; }
+    .crew-text > p { margin-bottom: 2rem; color: var(--color-muted); line-height: 1.7; }
+    .crew-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: color-mix(in srgb, var(--color-secondary) 12%, white);
+      border: 1px solid color-mix(in srgb, var(--color-secondary) 25%, transparent);
+      color: var(--color-secondary); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; border-radius: 100px; margin-bottom: 1.75rem;
+    }
+    .partner-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;
+    }
+    .partner-slot {
+      background: var(--color-surface);
+      border: 1.5px dashed var(--color-divider);
+      border-radius: var(--radius); padding: 1.25rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; min-height: 90px;
+      color: var(--color-muted); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.05em; text-align: center; text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .partner-slot svg { width: 22px; height: 22px; opacity: 0.4; }
+    .partner-slot:hover {
+      background: var(--color-fog); border-color: var(--color-secondary);
+    }
+
+    /* ─── AI Engine Section ─── */
+    #ai-engine {
+      background: linear-gradient(160deg, #0F2035 0%, #1A3550 50%, #1A3D50 100%);
+      position: relative; overflow: hidden;
+      color: #fff;
+    }
+    #ai-engine::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse at 80% 20%, rgba(61,155,154,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(200,169,110,0.1) 0%, transparent 40%);
+    }
+    #ai-engine .section-inner { position: relative; z-index: 1; }
+    #ai-engine h2, #ai-engine h3, #ai-engine h4 { color: #fff; }
+    #ai-engine .section-label { color: var(--color-accent); }
+    #ai-engine .section-label::before { background: var(--color-accent); }
+
+    .coming-soon-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.35);
+      color: var(--color-accent);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .coming-soon-badge::before {
+      content: ''; display: block; width: 6px; height: 6px;
+      background: var(--color-accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .ai-layout {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .ai-text h2 { margin-bottom: 1.25rem; }
+    .ai-text > p { color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.75; }
+    .ai-features {
+      display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem;
+    }
+    .ai-feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .ai-feature-dot {
+      flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--color-secondary); margin-top: 0.45rem;
+    }
+    .ai-feature h4 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem; }
+    .ai-feature p { font-size: 0.9rem; color: rgba(255,255,255,0.62); line-height: 1.6; }
+
+    .ai-visual {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 2rem; overflow: hidden;
+    }
+    .ai-visual-header {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+    }
+    .ai-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ai-dot.red { background: #FF6B6B; }
+    .ai-dot.yellow { background: #FFD93D; }
+    .ai-dot.green { background: #6BCB77; }
+    .ai-process-step {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px; padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem; display: flex; gap: 0.9rem; align-items: flex-start;
+    }
+    .ai-step-num {
+      flex-shrink: 0; width: 26px; height: 26px;
+      background: rgba(61,155,154,0.2); border: 1px solid rgba(61,155,154,0.35);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700; color: var(--color-secondary);
+    }
+    .ai-process-step h4 { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0.2rem; }
+    .ai-process-step p { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .ai-philosophy {
+      background: rgba(61,155,154,0.08);
+      border: 1px solid rgba(61,155,154,0.18);
+      border-radius: 10px; padding: 1.75rem; margin-top: 1.5rem;
+    }
+    .ai-philosophy p {
+      font-family: var(--font-display); font-size: 1.1rem; font-style: italic;
+      color: rgba(255,255,255,0.8); line-height: 1.65;
+    }
+    .ai-philosophy cite {
+      display: block; margin-top: 0.75rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--color-secondary); font-style: normal;
+    }
+
+    /* ─── CTA Strip ─── */
+    #cta {
+      background: var(--color-surface);
+      text-align: center;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    #cta .section-label { justify-content: center; }
+    #cta .section-label::before { display: none; }
+    #cta .section-label::after {
+      content: ''; display: block; width: 20px; height: 1px;
+      background: var(--color-secondary);
+    }
+    #cta h2 { max-width: 18ch; margin: 0 auto 1.25rem; }
+    #cta p { max-width: 50ch; margin: 0 auto 2.5rem; color: var(--color-muted); line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-contact-line {
+      margin-top: 2rem; display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+    .cta-contact-line a {
+      color: var(--color-muted); font-size: 0.9rem;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .cta-contact-line a:hover { color: var(--color-primary); }
+    .cta-contact-line span { color: var(--color-divider); }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--color-navy); color: rgba(255,255,255,0.6);
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 600;
+      color: #fff;
+    }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--color-secondary); }
+    .footer-copy { font-size: 0.8rem; width: 100%; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1.5rem; }
+
+    /* ─── Animations ─── */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-animate] .pillar-card:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .pillar-card:nth-child(2) { transition-delay: 0.15s; }
+    [data-animate] .pillar-card:nth-child(3) { transition-delay: 0.25s; }
+    [data-animate] .benefit-item:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .benefit-item:nth-child(2) { transition-delay: 0.12s; }
+    [data-animate] .benefit-item:nth-child(3) { transition-delay: 0.19s; }
+    [data-animate] .benefit-item:nth-child(4) { transition-delay: 0.26s; }
+    [data-animate] .ai-process-step:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .ai-process-step:nth-child(2) { transition-delay: 0.12s; }
+    [data-animate] .ai-process-step:nth-child(3) { transition-delay: 0.19s; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .method-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .shipyard-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .crew-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .crew-img-placeholder { padding-bottom: 55%; }
+      .ai-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .partner-row { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .partner-row { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 1.25rem; }
+      .hero-ctas { flex-direction: column; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate], * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Navigation -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <svg class="anchor-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/></svg>
+      Brightwork
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-home.html" class="drawer-link">Home</a></li>
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-about.html" class="drawer-link">About</a></li>
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-consulting3.html" class="drawer-link">Services</a></li>
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-contact.html" class="drawer-link">Contact Us</a></li>
+      <li><a href="#cta" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-home.html" class="drawer-link">Home</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-about.html" class="drawer-link">About</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-consulting3.html" class="drawer-link">Services</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-contact.html" class="drawer-link">Contact Us</a>
+  <a href="#cta" class="drawer-link">Get Started</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Operational Architecture</div>
+    <h1>The Shipwright's <em>Method</em></h1>
+    <p class="hero-sub">Most consultants are reactive—they wait for a hole to open up and then scramble to patch it. At Brightwork, we step back and look at the whole ship. We're your Operational Architects, fixing friction at its source.</p>
+    <div class="hero-ctas">
+      <a href="#cta" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Schedule Discovery Meeting
+      </a>
+      <a href="#method" class="btn-secondary">Explore the Method</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-value">3</div>
+        <div class="hero-stat-label">Core Structural Shifts</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">1</div>
+        <div class="hero-stat-label">Point of Contact</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">∞</div>
+        <div class="hero-stat-label">Scale-Ready Execution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,30 C360,70 1080,0 1440,30 L1440,0 L0,0 Z" fill="#F2F4F6"/>
+    <path d="M0,30 C360,70 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
+
+<!-- The Method -->
+<section id="method" data-animate>
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">The Approach</div>
+      <h2>Building a Business that Actually Works</h2>
+    </div>
+    <div class="method-intro">
+      <div class="method-intro-text">
+        <p style="color:var(--color-muted); line-height:1.75; margin-bottom:1.25rem;">We believe your business should be a high-performance machine you drive—not a "hustle" that runs you ragged. As your Operational Architects, we're digging into the structural integrity of your hull, your rigging, and your engine to fix the friction at its source.</p>
+        <p style="color:var(--color-muted); line-height:1.75;">We anchor your growth using three core structural shifts—each designed to create disciplined, predictable momentum toward your next milestone.</p>
+      </div>
+      <div class="method-intro-quote">
+        <p>"Your path is anchored in a data-backed reality built for a long-haul voyage, not just a quick fix."</p>
+        <cite>— The Brightwork Philosophy</cite>
+      </div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </div>
+        <div class="pillar-number">01</div>
+        <h4>Deep-Dive Intelligence</h4>
+        <p>We don't skim the surface with generic reports. We run "Deep Queries" into the DNA of your sales, marketing, and finances—ensuring your strategy is anchored in data-backed reality.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="pillar-number">02</div>
+        <h4>Seaworthy Operations</h4>
+        <p>A ship is only as good as the communication between its parts. We bridge the gap between your digital tools and your human team by drafting Operational Manuals and support systems.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3zM13 13l6 6"/></svg>
+        </div>
+        <div class="pillar-number">03</div>
+        <h4>The Vision-to-Frame Bridge</h4>
+        <p>You provide the destination; we engineer the machinery to get you there. We translate your high-level dreams into a systematic, granular blueprint—building an elite engine ready for your next revenue boost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,20 C480,60 960,0 1440,30 L1440,0 L0,0 Z" fill="#FFFFFF"/>
+    <path d="M0,20 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#1A3550"/>
+  </svg>
+</div>
+
+<!-- The Shipyard -->
+<section id="shipyard">
+  <div class="section-inner">
+    <div class="shipyard-layout" data-animate>
+      <div class="shipyard-text">
+        <div class="section-label">High-Level Project Management</div>
+        <h2>The Shipyard</h2>
+        <p>Building an extraordinary vessel takes more than just a good blueprint—it requires a coordinated team of master tradespeople. Brightwork operates as your High-Level General Contractor, managing every specialist so you can lead from the bridge while we handle the coordination in the engine room.</p>
+        <p>We know the best solutions come from Collaborative Excellence. We partner with a curated network of high-caliber professionals—specialists in marketing, finance, legal, and tech—to execute your goals with precision.</p>
+        <div class="shipyard-cta-block">
+          <div class="shipyard-contact">
+            <a href="tel:4342827215">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013.08 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              434-282-7215
+            </a>
+            <a href="mailto:contact@brightworkconsult.com">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              contact@brightworkconsult.com
+            </a>
+          </div>
+          <a href="#cta" class="btn-light">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Schedule Your Free Discovery Meeting
+          </a>
+        </div>
+      </div>
+      <div class="benefits-list" data-animate>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <h4>One Point of Contact</h4>
+            <p>Just like a GC manages the plumbers and electricians, we manage the specialists. You lead from the bridge; we handle the messy coordination in the engine room.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <h4>Cohesive Growth</h4>
+            <p>As your central Architect, we make sure every specialist's work aligns with your structural integrity—replacing siloed work with one unified strategy.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <h4>Elite Infrastructure</h4>
+            <p>We vet and bring in the right experts at exactly the right time, building an operational engine that manages your current volume while prepping for your next revenue boost.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h4>Scale-Ready Execution</h4>
+            <p>Our collaborative approach builds high-level execution for any sales process—ensuring every part of your business is Brightwork grade: meticulous, reliable, and high-performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,30 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#1A3550"/>
+    <path d="M0,30 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#F2F4F6"/>
+  </svg>
+</div>
+
+<!-- The Crew -->
+<section id="crew">
+  <div class="section-inner">
+    <div class="crew-layout" data-animate>
+      <div class="crew-img-placeholder">
+        <div class="ph-inner">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <span class="ph-label">Team / Partner Photo</span>
+          <span class="ph-size">Recommended: 800×900px</span>
+        </div>
+      </div>
+      <div class="crew-text" data-animate>
+        <div class="section-label">Partnership & Collaboration</div>
+        <span class="crew-badge">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Curated Partner Network
+        </span>
+        <h2>The Crew</h2>
+        <p>At Brightwork, we recognize that building a truly extraordinary vessel takes more than just one person. Having partners and vendors you can trust—who deeply understand the values, mission, and vision of your business—is critically important to maintaining structural integrity.</p>
+        <p>We partner with a curated network of high-caliber professionals to ensure every part of your business is "Brightwork" grade—meticulous, reliable, and high-performance.</p>
+        <p>We are always happy to collaborate with your existing team as well; these are simply the specialists we've worked with in the trenches to deliver experience-driven results.</p>
+        <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted);">Preferred Partner Specialties</h4>
+        <div class="partner-row">
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Marketing
+          </div>
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Finance
+          </div>
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Legal
+          </div>
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Technology
+          </div>
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Development
+          </div>
+          <div class="partner-slot">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            Operations
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,10 C480,60 960,0 1440,40 L1440,0 L0,0 Z" fill="#F2F4F6"/>
+    <path d="M0,10 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#0F2035"/>
+  </svg>
+</div>
+
+<!-- AI Engine -->
+<section id="ai-engine">
+  <div class="section-inner">
+    <div class="ai-layout">
+      <div class="ai-text" data-animate>
+        <div class="section-label">New Service Coming Soon</div>
+        <div class="coming-soon-badge">Coming Soon</div>
+        <h2>The Intelligent Engine: Tailored AI Workflows</h2>
+        <p>At Brightwork, we believe the most powerful technology is only effective when anchored in a seaworthy operational structure. We are now engineering custom LLM AI Workflows designed to act as a force multiplier for your business.</p>
+        <p style="color:rgba(255,255,255,0.65);">Unlike off-the-shelf AI tools, our workflows are not generic—they are the direct result of the Deep Query, meticulously customized to the specific friction points and data pipelines discovered during your Operational Diagnostic.</p>
+        <div class="ai-features">
+          <div class="ai-feature">
+            <div class="ai-feature-dot"></div>
+            <div>
+              <h4>Custom-Tuned Intelligence</h4>
+              <p>We leverage findings from your Data Audit to create AI agents that understand your unique business reality.</p>
+            </div>
+          </div>
+          <div class="ai-feature">
+            <div class="ai-feature-dot"></div>
+            <div>
+              <h4>Seaworthy Automations</h4>
+              <p>Integrated into your Operational Manual, our AI doesn't just "talk" to your staff—it actively supports them by automating complex busy work.</p>
+            </div>
+          </div>
+          <div class="ai-feature">
+            <div class="ai-feature-dot"></div>
+            <div>
+              <h4>Scale-Ready Momentum</h4>
+              <p>These workflows manage your current volume while anticipating your next revenue boost—turning AI into a sustainable competitive advantage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-animate>
+        <div class="ai-visual">
+          <div class="ai-visual-header">
+            <div class="ai-dot red"></div>
+            <div class="ai-dot yellow"></div>
+            <div class="ai-dot green"></div>
+            <span style="font-size:0.75rem; color:rgba(255,255,255,0.3); margin-left:0.5rem; font-family: monospace;">brightwork_ai_workflow.flow</span>
+          </div>
+          <div class="ai-process-step">
+            <div class="ai-step-num">1</div>
+            <div>
+              <h4>Operational Diagnostic</h4>
+              <p>Deep Query into your data pipelines, friction points, and business DNA</p>
+            </div>
+          </div>
+          <div class="ai-process-step">
+            <div class="ai-step-num">2</div>
+            <div>
+              <h4>Foundation First</h4>
+              <p>Clean data, mapped processes — we refuse to build AI on top of a leaky hull</p>
+            </div>
+          </div>
+          <div class="ai-process-step">
+            <div class="ai-step-num">3</div>
+            <div>
+              <h4>Custom AI Engineering</h4>
+              <p>Agents tuned to your specific workflows, automating complex cognitive tasks</p>
+            </div>
+          </div>
+          <div class="ai-process-step">
+            <div class="ai-step-num">4</div>
+            <div>
+              <h4>Fractional Leadership</h4>
+              <p>Ongoing oversight to keep your AI at the forefront of innovation</p>
+            </div>
+          </div>
+        </div>
+        <div class="ai-philosophy">
+          <p>"We refuse to build AI on top of a leaky hull. Foundation first, then we engineer the machinery you drive to reach your next milestone."</p>
+          <cite>— The Architect's Approach</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,40 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#0F2035"/>
+    <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
+
+<!-- CTA -->
+<section id="cta" data-animate>
+  <div class="section-inner">
+    <div class="section-label">Ready to Build</div>
+    <h2>Build a Seaworthy Legacy</h2>
+    <p>Transform operational chaos into a competitive advantage with an architect who actually knows how to manage the build.</p>
+    <div class="cta-buttons">
+      <a href="mailto:contact@brightworkconsult.com" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule Your Free Operational Discovery Meeting
+      </a>
+      <a href="tel:4342827215" class="btn-secondary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013.08 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        434-282-7215
+      </a>
+    </div>
+    <div class="cta-contact-line">
+      <a href="mailto:contact@brightworkconsult.com">contact@brightworkconsult.com</a>
+      <span>|</span>
+      <a href="tel:4342827215">434-282-7215</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="18" height="18" fill="none" stroke="rgba(61,155,154,0.8)" stroke-width="2" viewBox="0 0 24 24" style="display:inline; margin-right:0.4rem; vertical-align:middle;"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/></svg>
+      Brightwork
+    </div>
+    <ul class="footer-links">
+      <li><a href="#method">The Method</a></li>
+      <li><a href="#shipyard">The Shipyard</a></li>
+      <li><a href="#crew">The Crew</a></li>
+      <li><a href="#ai-engine">AI Engine</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Brightwork Consulting. All rights reserved. &nbsp;|&nbsp; contact@brightworkconsult.com &nbsp;|&nbsp; 434-282-7215</p>
+  </div>
+</footer>
+
+<script>
+  // ─── Scroll Progress Bar ───
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  });
+
+  // ─── Nav Shrink ───
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // ─── Hamburger + Mobile Drawer ───
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ─── Smooth Scroll ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ─── IntersectionObserver Animations ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+  // ─── Active Nav Highlighting ───
+  const sections = document.querySelectorAll('section[id], section.hero[id="home"]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const activateNav = () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current
+        ? 'var(--color-navy)' : '';
+    });
+  };
+  window.addEventListener('scroll', activateNav, { passive: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brightwork Component Reference Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bw-bg:#F2F4F6; --bw-surface:#FFFFFF; --bw-navy:#1A3550; --bw-primary:#1E4976;
+      --bw-secondary:#3D9B9A; --bw-accent:#C8A96E; --bw-text:#1C2B3A; --bw-muted:#7A8F9E;
+      --bw-fog:#E8ECF0; --bw-divider:#D0D8DF;
+      --bw-font-d:'Cormorant Garamond',Georgia,serif; --bw-font-b:'Barlow',sans-serif;
+      --bw-radius:6px; --bw-shadow-md:0 8px 32px rgba(26,53,80,0.11);
+      --bw-shadow-lg:0 20px 60px rgba(26,53,80,0.14);
+      --guide-bg:#0D1117; --guide-surface:#161B22; --guide-border:#30363D;
+      --guide-text:#E6EDF3; --guide-muted:#8B949E; --guide-teal:#39D0D0;
+      --guide-gold:#D4A953; --guide-font:'JetBrains Mono',monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;font-size:16px;}
+    body{font-family:var(--bw-font-b);background:var(--guide-bg);color:var(--guide-text);line-height:1.6;}
+    a{color:var(--guide-teal);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    code{font-family:var(--guide-font);font-size:0.82rem;background:rgba(61,208,208,0.08);border:1px solid rgba(61,208,208,0.2);padding:0.15rem 0.4rem;border-radius:4px;color:var(--guide-teal);}
+    pre{font-family:var(--guide-font);font-size:0.82rem;background:rgba(0,0,0,0.4);border:1px solid var(--guide-border);border-radius:8px;padding:1.25rem;overflow-x:auto;line-height:1.7;color:#A8D4B0;}
+
+    /* ── Layout ── */
+    .guide-header{background:linear-gradient(135deg,var(--bw-navy),#0D2035);padding:3rem 2rem;border-bottom:1px solid var(--guide-border);}
+    .guide-header h1{font-family:var(--bw-font-d);font-size:3rem;font-weight:300;color:#fff;margin-bottom:0.5rem;}
+    .guide-header h1 em{font-style:italic;color:var(--bw-secondary);}
+    .guide-header p{font-family:var(--bw-font-b);color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:60ch;}
+    .guide-nav{position:sticky;top:0;background:rgba(13,17,23,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--guide-border);padding:0.75rem 2rem;display:flex;gap:1.5rem;flex-wrap:wrap;z-index:100;}
+    .guide-nav a{font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--guide-muted);transition:color 0.2s;}
+    .guide-nav a:hover{color:var(--guide-teal);text-decoration:none;}
+    .guide-body{max-width:1100px;margin:0 auto;padding:3rem 2rem;}
+    .guide-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--guide-border);}
+    .guide-section:last-child{border-bottom:none;}
+    .guide-section-title{font-family:var(--bw-font-d);font-size:1.75rem;font-weight:400;color:#fff;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem;}
+    .guide-section-title .section-num{font-family:var(--guide-font);font-size:0.72rem;background:rgba(61,208,208,0.1);border:1px solid rgba(61,208,208,0.2);color:var(--guide-teal);padding:0.2rem 0.5rem;border-radius:4px;}
+    .guide-intro{color:var(--guide-muted);font-size:0.93rem;max-width:70ch;margin-bottom:2rem;line-height:1.7;}
+    .component-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.75rem;align-items:start;}
+    .component-row.full{grid-template-columns:1fr;}
+    .component-row.thirds{grid-template-columns:1fr 1fr 1fr;}
+    .code-panel{background:rgba(0,0,0,0.45);border:1px solid var(--guide-border);border-radius:8px;overflow:hidden;}
+    .code-panel-header{background:var(--guide-surface);padding:0.6rem 1rem;border-bottom:1px solid var(--guide-border);display:flex;align-items:center;justify-content:space-between;}
+    .code-panel-header .dot-row{display:flex;gap:5px;}
+    .dot{width:10px;height:10px;border-radius:50%;}
+    .dot-r{background:#FF5F57;}.dot-y{background:#FFBD2E;}.dot-g{background:#28C840;}
+    .code-panel-label{font-family:var(--guide-font);font-size:0.7rem;color:var(--guide-muted);}
+    .code-panel pre{border:none;border-radius:0;margin:0;}
+    .preview-panel{background:var(--guide-surface);border:1px solid var(--guide-border);border-radius:8px;overflow:hidden;}
+    .preview-panel-header{background:var(--guide-surface);padding:0.6rem 1rem;border-bottom:1px solid var(--guide-border);font-family:var(--guide-font);font-size:0.7rem;color:var(--guide-muted);}
+    .preview-body{padding:1.5rem;}
+    .preview-dark{background:var(--bw-navy);}
+    .preview-fog{background:var(--bw-bg);}
+    .preview-gradient{background:linear-gradient(160deg,#0F2035,#1A3550);}
+    .tip-box{background:rgba(61,208,208,0.06);border:1px solid rgba(61,208,208,0.18);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;gap:0.75rem;align-items:flex-start;}
+    .tip-box svg{width:16px;height:16px;color:var(--guide-teal);flex-shrink:0;margin-top:2px;}
+    .tip-box p{font-size:0.85rem;color:var(--guide-muted);line-height:1.6;}
+    .tip-box p strong{color:var(--guide-teal);}
+    .class-pill{display:inline-flex;background:rgba(168,212,176,0.1);border:1px solid rgba(168,212,176,0.2);color:#A8D4B0;font-family:var(--guide-font);font-size:0.75rem;padding:0.2rem 0.55rem;border-radius:4px;margin:0.2rem;}
+    .shortcode-pill{display:inline-flex;background:rgba(61,208,208,0.08);border:1px solid rgba(61,208,208,0.2);color:var(--guide-teal);font-family:var(--guide-font);font-size:0.75rem;padding:0.2rem 0.55rem;border-radius:4px;margin:0.2rem;}
+    .color-swatches{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .swatch{display:flex;flex-direction:column;align-items:center;gap:0.4rem;}
+    .swatch-box{width:56px;height:56px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);}
+    .swatch-name{font-family:var(--guide-font);font-size:0.65rem;color:var(--guide-muted);}
+    .swatch-var{font-family:var(--guide-font);font-size:0.6rem;color:var(--guide-muted);opacity:0.7;}
+    .step-badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--bw-primary);color:#fff;border-radius:50%;font-size:0.72rem;font-weight:700;flex-shrink:0;}
+    .steps-list{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0;}
+    .step-item{display:flex;gap:0.75rem;align-items:flex-start;padding:1rem;background:var(--guide-surface);border:1px solid var(--guide-border);border-radius:8px;}
+    .step-item p{font-size:0.88rem;color:var(--guide-muted);line-height:1.6;}
+    .step-item p strong{color:var(--guide-text);}
+
+    /* ── BW Component Previews (same as real CSS) ── */
+    .bw-eyebrow-prev{display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bw-secondary);}
+    .bw-eyebrow-prev::before{content:'';display:block;width:28px;height:1px;background:var(--bw-secondary);}
+    .bw-label-prev{display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bw-secondary);}
+    .bw-label-prev::before{content:'';display:block;width:20px;height:1px;background:var(--bw-secondary);}
+    .bw-label-centered-prev{display:flex;align-items:center;gap:0.6rem;font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bw-secondary);justify-content:center;}
+    .bw-label-centered-prev::before,.bw-label-centered-prev::after{content:'';display:block;width:20px;height:1px;background:var(--bw-secondary);}
+    .bw-quote-prev{background:var(--bw-fog);border-left:3px solid var(--bw-secondary);padding:1.25rem;border-radius:0 6px 6px 0;}
+    .bw-quote-prev p{font-family:var(--bw-font-d);font-size:1.1rem;font-style:italic;font-weight:300;line-height:1.6;color:var(--bw-navy);}
+    .bw-pillar-prev{background:var(--bw-fog);border:1px solid var(--bw-divider);border-radius:10px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;}
+    .bw-pillar-icon-prev{flex-shrink:0;width:36px;height:36px;background:rgba(61,155,154,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--bw-secondary);}
+    .bw-pillar-icon-prev svg{width:18px;height:18px;}
+    .bw-pillar-prev h4{font-family:var(--bw-font-d);font-size:1.1rem;font-weight:600;color:var(--bw-navy);margin-bottom:0.25rem;}
+    .bw-pillar-prev p{font-family:var(--bw-font-b);font-size:0.85rem;color:var(--bw-muted);}
+    .bw-stat-prev{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1rem;text-align:center;}
+    .bw-stat-val{font-family:var(--bw-font-d);font-size:2rem;font-weight:500;color:var(--bw-secondary);line-height:1;margin-bottom:0.3rem;}
+    .bw-stat-lbl{font-family:var(--bw-font-b);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+    .bw-btn-prev{display:inline-flex;align-items:center;gap:0.5rem;background:var(--bw-primary);color:#fff;padding:0.7rem 1.5rem;border-radius:6px;font-family:var(--bw-font-b);font-size:0.88rem;font-weight:600;letter-spacing:0.04em;}
+    .bw-btn-sec-prev{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--bw-primary);border:1.5px solid var(--bw-primary);padding:0.7rem 1.5rem;border-radius:6px;font-family:var(--bw-font-b);font-size:0.88rem;font-weight:600;letter-spacing:0.04em;}
+    .bw-btn-light-prev{display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--bw-primary);padding:0.7rem 1.5rem;border-radius:6px;font-family:var(--bw-font-b);font-size:0.88rem;font-weight:600;letter-spacing:0.04em;}
+    .bw-goal-prev{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.9rem;border-radius:100px;background:rgba(61,155,154,0.1);border:1px solid rgba(61,155,154,0.25);color:var(--bw-secondary);font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;}
+    .bw-goal-gold-prev{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.9rem;border-radius:100px;background:rgba(200,169,110,0.14);border:1px solid rgba(200,169,110,0.3);color:var(--bw-accent);font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;}
+    .bw-coming-soon-prev{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.35);color:var(--bw-accent);font-family:var(--bw-font-b);font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:100px;}
+    .bw-coming-soon-dot{display:block;width:6px;height:6px;background:var(--bw-accent);border-radius:50%;animation:bw-pulse 2s infinite;}
+    @keyframes bw-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+    .bw-process-prev{display:flex;gap:0.75rem;align-items:flex-start;}
+    .bw-step-num-prev{flex-shrink:0;width:26px;height:26px;background:rgba(61,155,154,0.18);border:1px solid rgba(61,155,154,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--bw-secondary);font-family:var(--bw-font-b);}
+    .bw-process-prev h5{font-family:var(--bw-font-b);font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.88);margin-bottom:0.2rem;}
+    .bw-process-prev p{font-family:var(--bw-font-b);font-size:0.75rem;color:rgba(255,255,255,0.48);line-height:1.5;}
+    .bw-def-prev{background:#fff;border:1px solid var(--bw-divider);border-radius:10px;padding:1.5rem;position:relative;overflow:hidden;}
+    .bw-def-prev::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--bw-secondary),var(--bw-accent));}
+    .bw-link-prev{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--bw-font-b);font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--bw-primary);}
+    .bw-benefit-prev{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:1rem;}
+    .bw-benefit-icon{flex-shrink:0;width:36px;height:36px;background:rgba(61,155,154,0.18);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--bw-secondary);}
+    .bw-benefit-prev h4{font-family:var(--bw-font-d);font-size:1rem;font-weight:600;color:#fff;margin-bottom:0.2rem;}
+    .bw-benefit-prev p{font-family:var(--bw-font-b);font-size:0.82rem;color:rgba(255,255,255,0.6);}
+
+    @media(max-width:768px){.component-row,.component-row.thirds{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<div class="guide-header">
+  <h1>Brightwork <em>Component</em> Reference</h1>
+  <p>Your complete guide to building new pages in Elementor using Brightwork's CSS classes and shortcodes. Every component shown here is available once the two child theme files are installed.</p>
+</div>
+
+<nav class="guide-nav">
+  <a href="#setup">Setup</a>
+  <a href="#colors">Colors</a>
+  <a href="#sections">Section Backgrounds</a>
+  <a href="#typography">Typography</a>
+  <a href="#labels">Labels & Eyebrows</a>
+  <a href="#quotes">Quotes</a>
+  <a href="#cards">Cards</a>
+  <a href="#components">Components</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#waves">Waves</a>
+  <a href="#workflow">Page Workflow</a>
+</nav>
+
+<div class="guide-body">
+
+  <!-- ── SETUP ── -->
+  <div class="guide-section" id="setup">
+    <div class="guide-section-title"><span class="section-num">00</span>Setup — 3 Steps, ~5 Minutes</div>
+    <p class="guide-intro">Install two files in your child theme, then add one line to functions.php. After that every shortcode and CSS class in this guide is available on every page.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-badge">1</div><p><strong>Upload both files to your child theme folder</strong> via FTP or File Manager (wp-content/themes/YOUR-CHILD-THEME/):<br><code>brightwork-elementor.css</code> &nbsp;&amp;&nbsp; <code>brightwork-shortcodes.php</code></p></div>
+      <div class="step-item"><div class="step-badge">2</div><p><strong>Open your child theme's functions.php</strong> (Appearance → Theme File Editor) and add this single line anywhere inside it:<br><code>require_once get_stylesheet_directory() . '/brightwork-shortcodes.php';</code><br>This loads the CSS automatically and registers all shortcodes.</p></div>
+      <div class="step-item"><div class="step-badge">3</div><p><strong>Done.</strong> Create any new WordPress page, open it in Elementor, and start using the classes and shortcodes below. No template file needed — you build the layout in Elementor and apply Brightwork styling through CSS classes and shortcode widgets.</p></div>
+    </div>
+    <div class="tip-box">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>How CSS classes work in Elementor Free:</strong> Select any Section, Column, or Widget → click the Advanced tab in the left panel → type the class name(s) in the "CSS Classes" field (space-separated for multiple). The styling applies instantly on save.</p>
+    </div>
+    <div class="tip-box">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>How shortcodes work in Elementor Free:</strong> Add a <strong>Shortcode widget</strong> to any section (search "shortcode" in the Elementor widget panel), then type the shortcode into the field. The component renders on the frontend.</p>
+    </div>
+  </div>
+
+  <!-- ── COLORS ── -->
+  <div class="guide-section" id="colors">
+    <div class="guide-section-title"><span class="section-num">01</span>Color Palette</div>
+    <p class="guide-intro">These are the CSS variables available throughout the design system. You can reference them in any Custom CSS field in Porto or Elementor.</p>
+    <div class="color-swatches">
+      <div class="swatch"><div class="swatch-box" style="background:#F2F4F6;"></div><div class="swatch-name">Fog</div><div class="swatch-var">--bw-bg</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#FFFFFF;border-color:#ccc;"></div><div class="swatch-name">Surface</div><div class="swatch-var">--bw-surface</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1A3550;"></div><div class="swatch-name">Navy</div><div class="swatch-var">--bw-navy</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1E4976;"></div><div class="swatch-name">Primary</div><div class="swatch-var">--bw-primary</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#3D9B9A;"></div><div class="swatch-name">Teal</div><div class="swatch-var">--bw-secondary</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#C8A96E;"></div><div class="swatch-name">Gold</div><div class="swatch-var">--bw-accent</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1C2B3A;"></div><div class="swatch-name">Text</div><div class="swatch-var">--bw-text</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#7A8F9E;"></div><div class="swatch-name">Muted</div><div class="swatch-var">--bw-muted</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#D0D8DF;"></div><div class="swatch-name">Divider</div><div class="swatch-var">--bw-divider</div></div>
+    </div>
+  </div>
+
+  <!-- ── SECTIONS ── -->
+  <div class="guide-section" id="sections">
+    <div class="guide-section-title"><span class="section-num">02</span>Section Backgrounds</div>
+    <p class="guide-intro">Apply these classes to Elementor <strong>Sections</strong> via Advanced → CSS Classes. They set the background color and any special effects (dot grid, radial glow, etc.).</p>
+    <div class="component-row thirds">
+      <div class="preview-panel"><div class="preview-panel-header">bw-section-fog</div><div class="preview-body preview-fog" style="min-height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:var(--bw-muted);">Page background (#F2F4F6)</span></div></div>
+      <div class="preview-panel"><div class="preview-panel-header">bw-section-white</div><div class="preview-body" style="min-height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:var(--bw-muted);">Pure white surface</span></div></div>
+      <div class="preview-panel"><div class="preview-panel-header">bw-section-hero</div><div class="preview-body preview-fog" style="min-height:80px;display:flex;align-items:center;justify-content:center;background-image:radial-gradient(circle,rgba(26,53,80,0.055) 1px,transparent 1px);background-size:32px 32px;"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:var(--bw-muted);">Fog + dot grid</span></div></div>
+    </div>
+    <div class="component-row thirds">
+      <div class="preview-panel"><div class="preview-panel-header">bw-section-navy</div><div class="preview-body preview-dark" style="min-height:80px;display:flex;align-items:center;justify-content:center;background-image:radial-gradient(ellipse at 75% 40%,rgba(61,155,154,0.15) 0%,transparent 55%);"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:rgba(255,255,255,0.6);">Navy + teal glow</span></div></div>
+      <div class="preview-panel"><div class="preview-panel-header">bw-section-dark</div><div class="preview-body preview-gradient" style="min-height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:rgba(255,255,255,0.6);">Dark gradient + glows</span></div></div>
+      <div class="preview-panel"><div class="preview-panel-header">bw-stagger-children</div><div class="preview-body" style="min-height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--bw-font-b);font-size:0.82rem;color:var(--bw-muted);">Add to Section for staggered column animations</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── TYPOGRAPHY ── -->
+  <div class="guide-section" id="typography">
+    <div class="guide-section-title"><span class="section-num">03</span>Typography Classes</div>
+    <p class="guide-intro">Apply these to Elementor <strong>Heading</strong> or <strong>Text Editor</strong> widgets to apply Brightwork's font system.</p>
+    <div class="component-row">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">CSS Class on Heading widget</span></div><pre>bw-heading-display
+bw-heading-serif
+bw-heading-on-dark    ← for navy/dark sections
+bw-text-body
+bw-text-muted
+bw-text-on-dark       ← for navy/dark sections
+bw-text-italic-display
+bw-text-centered</pre></div>
+      <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body">
+        <div style="font-family:var(--bw-font-d);font-size:2.5rem;font-weight:300;color:var(--bw-navy);margin-bottom:0.5rem;">Display Heading</div>
+        <div style="font-family:var(--bw-font-d);font-size:1.6rem;font-weight:400;color:var(--bw-navy);margin-bottom:0.5rem;">Serif Heading</div>
+        <div style="font-family:var(--bw-font-b);font-size:1rem;color:var(--bw-text);margin-bottom:0.4rem;">Body text — Barlow regular</div>
+        <div style="font-family:var(--bw-font-b);font-size:1rem;color:var(--bw-muted);margin-bottom:0.4rem;">Muted text — for supporting copy</div>
+        <div style="font-family:var(--bw-font-d);font-size:1.1rem;font-style:italic;font-weight:300;color:var(--bw-muted);">Italic display — hero subheadings</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ── LABELS ── -->
+  <div class="guide-section" id="labels">
+    <div class="guide-section-title"><span class="section-num">04</span>Labels & Eyebrows</div>
+    <p class="guide-intro">Shortcodes for the small all-caps labels above headings. Paste into a <strong>Shortcode widget</strong>.</p>
+    <div class="component-row">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">Shortcode widget</span></div><pre>[bw_eyebrow]Operational Architecture[/bw_eyebrow]
+
+[bw_eyebrow_dark]New Service Coming Soon[/bw_eyebrow_dark]
+
+[bw_section_label]Our Philosophy[/bw_section_label]
+
+[bw_section_label_centered]Core Values[/bw_section_label_centered]
+
+[bw_section_label_accent]Ready to Build[/bw_section_label_accent]</pre></div>
+      <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body" style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="bw-eyebrow-prev">Operational Architecture</div>
+        <div class="bw-eyebrow-prev" style="color:var(--bw-accent);" data-x><span style="display:block;width:28px;height:1px;background:var(--bw-accent);"></span>New Service Coming Soon</div>
+        <div class="bw-label-prev">Our Philosophy</div>
+        <div class="bw-label-centered-prev">Core Values</div>
+        <div class="bw-label-prev" style="color:var(--bw-accent);"><span style="display:block;width:20px;height:1px;background:var(--bw-accent);"></span>Ready to Build</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ── QUOTES ── -->
+  <div class="guide-section" id="quotes">
+    <div class="guide-section-title"><span class="section-num">05</span>Quote Blocks</div>
+    <div class="component-row">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">Shortcode widget — light sections</span></div><pre>[bw_quote]We don't just patch leaks;
+we engineer the structural integrity
+that allows a vision to become
+a legacy.[/bw_quote]</pre></div>
+      <div class="preview-panel"><div class="preview-panel-header">Preview (light section)</div><div class="preview-body preview-fog">
+        <div class="bw-quote-prev"><p>We don't just patch leaks; we engineer the structural integrity that allows a vision to become a legacy.</p></div>
+      </div></div>
+    </div>
+    <div class="component-row">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">Shortcode widget — dark sections</span></div><pre>[bw_quote_dark]Technology should be
+a wind in your sails, not an anchor
+dragging you down.[/bw_quote_dark]</pre></div>
+      <div class="preview-panel"><div class="preview-panel-header">Preview (dark section)</div><div class="preview-body preview-dark">
+        <div style="background:rgba(61,155,154,0.08);border:1px solid rgba(61,155,154,0.18);border-radius:10px;padding:1.5rem;"><p style="font-family:var(--bw-font-d);font-size:1.1rem;font-style:italic;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.85);">Technology should be a wind in your sails, not an anchor dragging you down.</p></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ── CARDS ── -->
+  <div class="guide-section" id="cards">
+    <div class="guide-section-title"><span class="section-num">06</span>Card Styles</div>
+    <p class="guide-intro">Apply to Elementor <strong>Inner Sections</strong> or <strong>Columns</strong>. These control the card background, border, shadow, and hover effect.</p>
+    <div class="component-row thirds">
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card — on fog/white sections</div><div style="background:var(--bw-surface);border:1px solid var(--bw-divider);border-radius:12px;padding:1.25rem;"><p style="font-family:var(--bw-font-b);font-size:0.85rem;color:var(--bw-muted);">Standard card. Hover lifts with shadow.</p></div></div>
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card-fog — on white sections</div><div style="background:var(--bw-bg);border:1px solid var(--bw-divider);border-radius:12px;padding:1.25rem;"><p style="font-family:var(--bw-font-b);font-size:0.85rem;color:var(--bw-muted);">Fog-colored card on white background.</p></div></div>
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card-dark — on navy sections</div><div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.25rem;"><p style="font-family:var(--bw-font-b);font-size:0.85rem;color:rgba(255,255,255,0.5);">Semi-transparent card for dark backgrounds.</p></div></div>
+    </div>
+    <div class="component-row thirds" style="margin-top:1rem;">
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card-accent-top</div><div style="background:var(--bw-surface);border:1px solid var(--bw-divider);border-radius:10px;padding:1.25rem;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--bw-secondary),var(--bw-accent));"></div><p style="font-family:var(--bw-font-b);font-size:0.85rem;color:var(--bw-muted);">Gradient top border. Good for feature cards.</p></div></div>
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card-left-border</div><div style="border-left:3px solid var(--bw-secondary);border-radius:0 6px 6px 0;background:var(--bw-bg);padding:1.25rem;"><p style="font-family:var(--bw-font-b);font-size:0.85rem;color:var(--bw-muted);">Left teal border. Pillar / quote style.</p></div></div>
+      <div><div style="font-family:var(--bw-font-b);font-size:0.72rem;color:var(--guide-muted);margin-bottom:0.5rem;">bw-card-definition</div><div class="bw-def-prev"><div style="font-family:var(--bw-font-d);font-size:1.25rem;font-weight:600;color:var(--bw-navy);">Brightwork</div><div style="font-family:var(--bw-font-b);font-size:0.78rem;color:var(--bw-muted);font-style:italic;">/ˈbrīt-ˌwərk/</div></div></div>
+    </div>
+  </div>
+
+  <!-- ── COMPONENTS ── -->
+  <div class="guide-section" id="components">
+    <div class="guide-section-title"><span class="section-num">07</span>Shortcode Components</div>
+
+    <p style="font-family:var(--bw-font-b);font-size:0.9rem;color:var(--guide-muted);margin-bottom:2rem;">Drop any of these shortcodes into a <strong>Shortcode widget</strong> in Elementor.</p>
+
+    <!-- Pillar -->
+    <div style="margin-bottom:2rem;">
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">[bw_pillar] — for light/white sections</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre>[bw_pillar icon="search" title="The Data Curiosity"]
+We don't just pull reports—we perform
+Deep Queries for your whole structure.
+[/bw_pillar]
+
+<!-- icon options: search | layers | compass |
+  users | star | lightning | chart | tool |
+  anchor | home | dollar | shield | eye |
+  clock | globe | monitor | code --></pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body preview-fog">
+          <div class="bw-pillar-prev"><div class="bw-pillar-icon-prev"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div><h4>The Data Curiosity</h4><p>We don't just pull reports—we perform Deep Queries for your whole structure.</p></div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Benefit item -->
+    <div style="margin-bottom:2rem;">
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">[bw_benefit_item] — for navy/dark sections</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre>[bw_benefit_item icon="users"
+  title="One Point of Contact"]
+Just like a GC manages the plumbers,
+we manage the specialists.
+[/bw_benefit_item]</pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body preview-dark">
+          <div class="bw-benefit-prev"><div class="bw-benefit-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><h4>One Point of Contact</h4><p>Just like a GC manages the plumbers, we manage the specialists.</p></div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Process steps -->
+    <div style="margin-bottom:2rem;">
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">[bw_process_card] + [bw_process_step] + [bw_process_connector] — for dark sections</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre>[bw_process_card filename="my_process.flow"]
+  [bw_process_step num="1"
+    title="Operational Diagnostic"]
+    Deep Query into your structure
+  [/bw_process_step]
+  [bw_process_connector]
+  [bw_process_step num="2"
+    title="Strategic Blueprint"]
+    Translate vision into architecture
+  [/bw_process_step]
+[/bw_process_card]</pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body preview-dark">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.25rem;">
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:1rem;"><div style="width:10px;height:10px;border-radius:50%;background:#FF6B6B;"></div><div style="width:10px;height:10px;border-radius:50%;background:#FFD93D;"></div><div style="width:10px;height:10px;border-radius:50%;background:#6BCB77;"></div><span style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-left:6px;font-family:monospace;">my_process.flow</span></div>
+            <div class="bw-process-prev"><div class="bw-step-num-prev">1</div><div><h5>Operational Diagnostic</h5><p>Deep Query into your structure</p></div></div>
+            <div style="width:1px;height:14px;background:rgba(61,155,154,0.2);margin-left:13px;margin-bottom:0.2rem;"></div>
+            <div class="bw-process-prev"><div class="bw-step-num-prev">2</div><div><h5>Strategic Blueprint</h5><p>Translate vision into architecture</p></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div style="margin-bottom:2rem;">
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">[bw_stat] / [bw_stat_light] — number callout cards</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre><!-- Dark section: -->
+[bw_stat value="3" label="Pillar Framework"]
+[bw_stat value="∞" label="Scalable Systems"]
+
+<!-- Light section: -->
+[bw_stat_light value="01" label="Phase One"]</pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body preview-dark" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="bw-stat-prev"><div class="bw-stat-val">3</div><div class="bw-stat-lbl">Pillar Framework</div></div>
+          <div class="bw-stat-prev"><div class="bw-stat-val">∞</div><div class="bw-stat-lbl">Scalable Systems</div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div style="margin-bottom:2rem;">
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">Badges & goal chips</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre>[bw_goal_badge text="Goal: Strategic Clarity"]
+
+[bw_goal_badge_gold text="Goal: Operational Independence"]
+
+[bw_coming_soon text="Coming Soon"]</pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body" style="display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;">
+          <div class="bw-goal-prev"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Goal: Strategic Clarity</div>
+          <div class="bw-goal-gold-prev"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Goal: Operational Independence</div>
+          <div class="bw-coming-soon-prev"><span class="bw-coming-soon-dot"></span>Coming Soon</div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Text link -->
+    <div>
+      <p style="font-family:var(--guide-font);font-size:0.78rem;color:var(--guide-teal);margin-bottom:0.75rem;">Arrow text link + animate wrapper</p>
+      <div class="component-row">
+        <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div></div><pre>[bw_text_link url="/services"
+  text="Learn More About Our Services"]
+
+[bw_contact_strip
+  phone="434-282-7215"
+  email="contact@brightworkconsult.com"]
+
+<!-- Wrap any content for scroll reveal: -->
+[bw_animate]
+  [bw_pillar icon="star" title="My Point"]
+    Content here
+  [/bw_pillar]
+[/bw_animate]</pre></div>
+        <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="bw-link-prev">Learn More About Our Services<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          <div class="preview-dark" style="border-radius:8px;padding:1rem;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;flex-wrap:wrap;">
+              <a href="#" style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.6);font-family:var(--bw-font-b);font-size:0.85rem;text-decoration:none;"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013.08 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>434-282-7215</a>
+              <span style="color:rgba(255,255,255,0.2);">|</span>
+              <a href="#" style="display:flex;align-items:center;gap:0.4rem;color:rgba(255,255,255,0.6);font-family:var(--bw-font-b);font-size:0.85rem;text-decoration:none;"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@brightworkconsult.com</a>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BUTTONS ── -->
+  <div class="guide-section" id="buttons">
+    <div class="guide-section-title"><span class="section-num">08</span>Buttons</div>
+    <p class="guide-intro">Apply to Elementor <strong>Button widgets</strong> via Advanced → CSS Classes.</p>
+    <div class="component-row">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">CSS Class on Button widget</span></div><pre>bw-btn-primary      ← navy fill, white text (all sections)
+bw-btn-secondary    ← outlined navy (light sections)
+bw-btn-light        ← white fill (dark/navy sections)
+bw-btn-ghost-light  ← outlined white (dark/navy sections)</pre></div>
+      <div class="preview-panel"><div class="preview-panel-header">Preview</div><div class="preview-body" style="display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;">
+        <div class="bw-btn-prev">Primary Button</div>
+        <div class="bw-btn-sec-prev">Secondary Button</div>
+        <div style="background:var(--bw-navy);padding:1rem;border-radius:8px;display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <div class="bw-btn-light-prev">Light Button</div>
+          <div style="display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.3);padding:0.7rem 1.5rem;border-radius:6px;font-family:var(--bw-font-b);font-size:0.88rem;font-weight:600;">Ghost Light</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ── WAVES ── -->
+  <div class="guide-section" id="waves">
+    <div class="guide-section-title"><span class="section-num">09</span>Wave Dividers</div>
+    <p class="guide-intro">Add a <strong>Shortcode widget</strong> between sections. Set from/to to match the background colors of the sections above and below it. Remove all padding from the shortcode widget's Advanced settings.</p>
+    <div class="component-row full">
+      <div class="code-panel"><div class="code-panel-header"><div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><span class="code-panel-label">Available transitions</span></div><pre>[bw_wave from="fog" to="white"]       ← fog section → white section
+[bw_wave from="white" to="navy"]      ← white section → navy section
+[bw_wave from="navy" to="fog"]        ← navy section → fog section
+[bw_wave from="navy" to="dark"]       ← navy → dark gradient (footer CTA)
+[bw_wave from="dark" to="white"]      ← dark → white
+[bw_wave from="fog" to="navy"]        ← fog → navy
+[bw_wave from="white" to="dark"]      ← white → dark gradient
+[bw_wave from="dark" to="fog"]        ← dark → fog
+
+<!-- Values for from/to: fog | white | navy | dark --></pre></div>
+    </div>
+  </div>
+
+  <!-- ── WORKFLOW ── -->
+  <div class="guide-section" id="workflow">
+    <div class="guide-section-title"><span class="section-num">10</span>Building a New Page — Workflow</div>
+    <p class="guide-intro">Here's the exact sequence to recreate any Brightwork page layout in Elementor Free.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-badge">1</div><p><strong>Create a new WordPress Page</strong>, give it a title, and open it in Elementor. Set Page Layout to "Elementor Canvas" or "Full Width" in Page Settings (⚙ icon bottom left).</p></div>
+      <div class="step-item"><div class="step-badge">2</div><p><strong>Add a Shortcode widget at the very top</strong> of the page and type <code>[bw_progress_bar]</code>. This adds the teal/gold scroll progress bar.</p></div>
+      <div class="step-item"><div class="step-badge">3</div><p><strong>Add a Section</strong>, open Advanced → CSS Classes, and type the background class: <code>bw-section-hero</code>, <code>bw-section-white</code>, <code>bw-section-navy</code>, etc.</p></div>
+      <div class="step-item"><div class="step-badge">4</div><p><strong>Inside the section</strong>, add columns and widgets normally. Apply typography classes to Heading and Text widgets via Advanced → CSS Classes. Use <code>bw-card-fog</code> or <code>bw-card-dark</code> on columns for the card look.</p></div>
+      <div class="step-item"><div class="step-badge">5</div><p><strong>Add a Shortcode widget between sections</strong> for wave transitions: <code>[bw_wave from="white" to="navy"]</code>. Set its top/bottom padding to 0px in the Layout tab.</p></div>
+      <div class="step-item"><div class="step-badge">6</div><p><strong>Use Shortcode widgets</strong> for complex components — eyebrows, pillar cards, stat boxes, process steps, quote blocks, and buttons. Place them inside columns.</p></div>
+      <div class="step-item"><div class="step-badge">7</div><p><strong>Wrap sections or widgets</strong> in <code>[bw_animate]...[/bw_animate]</code> for scroll reveal animations. The JS in the shortcodes file handles the reveal automatically.</p></div>
+    </div>
+    <div class="tip-box" style="margin-top:1.5rem;">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <p><strong>Pro tip:</strong> Once you build one section you're happy with, right-click it in Elementor and choose <em>Save as Template</em>. You can then drag it into any future page and just swap the text — the styling is already set.</p>
+    </div>
+  </div>
+
+</div><!-- /.guide-body -->
+</body>
+</html>

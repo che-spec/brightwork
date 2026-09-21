@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brightwork Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #08182A;
+    --navy-mid: #0D2540;
+    --navy-light: #14365A;
+    --brass: #C4973A;
+    --brass-light: #E2B96A;
+    --brass-pale: #F5E8CC;
+    --cream: #F0EAD8;
+    --cream-dark: #D9CEB8;
+    --fog: rgba(240,234,216,0.08);
+    --fog-mid: rgba(240,234,216,0.14);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--brass);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    mix-blend-mode: normal;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,151,58,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 16px; height: 16px; }
+  body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 50px; height: 50px; border-color: var(--brass); }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    padding: 1.4rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.5s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(8,24,42,0.92);
+    backdrop-filter: blur(12px);
+    padding: 1rem 4rem;
+    border-bottom: 1px solid rgba(196,151,58,0.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--brass); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dark);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--brass); }
+  .nav-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.6rem;
+    border: 1px solid var(--brass);
+    color: var(--brass);
+    background: transparent;
+    cursor: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover { background: var(--brass); color: var(--navy); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 4rem;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, #0D2F50 0%, var(--navy) 70%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, var(--navy) 100%);
+  }
+
+  /* Animated compass */
+  .compass-wrap {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(48vw, 560px);
+    height: min(48vw, 560px);
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.6s forwards;
+  }
+  .compass-svg { width: 100%; height: 100%; }
+  .compass-rose { transform-origin: 50% 50%; animation: compassSpin 60s linear infinite; }
+  .compass-needle { transform-origin: 50% 50%; animation: needleSway 4s ease-in-out infinite; }
+  @keyframes compassSpin { to { transform: rotate(360deg); } }
+  @keyframes needleSway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  /* Animated horizon line */
+  .horizon-lines {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 220px;
+    overflow: hidden;
+  }
+  .wave-path {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+  }
+  .wave-path:nth-child(1) { animation: waveScroll 12s linear infinite; opacity: 0.4; }
+  .wave-path:nth-child(2) { animation: waveScroll 18s linear infinite reverse; opacity: 0.2; top: 30px; }
+  .wave-path:nth-child(3) { animation: waveScroll 9s linear infinite; opacity: 0.15; top: 60px; }
+  @keyframes waveScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Star field */
+  .stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    width: 1px; height: 1px;
+    background: var(--cream);
+    border-radius: 50%;
+    animation: twinkle var(--d) ease-in-out infinite var(--delay);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+  }
+
+  /* Latitude/longitude grid lines */
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      linear-gradient(var(--cream) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 640px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideUp 0.8s ease 0.8s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--brass);
+  }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideUp 1s ease 1s forwards;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--brass-light);
+  }
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(240,234,216,0.7);
+    margin-bottom: 3rem;
+    max-width: 480px;
+    opacity: 0;
+    animation: slideUp 1s ease 1.2s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: slideUp 1s ease 1.4s forwards;
+  }
+  .btn-primary {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.8rem;
+    background: var(--brass);
+    color: var(--navy);
+    border: none;
+    cursor: none;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--brass-light); transform: translateY(-2px); }
+  .btn-ghost {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--brass); }
+  .btn-ghost::after {
+    content: '→';
+    transition: transform 0.3s;
+  }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 2s forwards;
+  }
+  .scroll-indicator span {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(240,234,216,0.4);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--brass) 0%, transparent 100%);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); }
+    100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { position: relative; }
+
+  /* Section separator */
+  .wave-sep {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+  }
+  .wave-sep svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  [data-delay="1"] { transition-delay: 0.1s; }
+  [data-delay="2"] { transition-delay: 0.2s; }
+  [data-delay="3"] { transition-delay: 0.3s; }
+  [data-delay="4"] { transition-delay: 0.4s; }
+  [data-delay="5"] { transition-delay: 0.5s; }
+  [data-delay="6"] { transition-delay: 0.6s; }
+
+  /* ─── PROBLEM SECTION ─── */
+  #problem {
+    padding: 9rem 4rem;
+    background: linear-gradient(180deg, var(--navy) 0%, #091E35 100%);
+  }
+  .problem-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 3rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--brass);
+  }
+  .problem-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    max-width: 800px;
+    margin-bottom: 5rem;
+  }
+  .problem-headline strong {
+    font-weight: 600;
+    color: var(--brass-light);
+  }
+
+  .problem-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(196,151,58,0.2);
+    border: 1.5px solid rgba(196,151,58,0.2);
+  }
+  .problem-card {
+    background: var(--navy);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--brass);
+    transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .problem-card:hover { background: rgba(13,37,64,0.8); }
+  .problem-card:hover::before { height: 100%; }
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(196,151,58,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.4s;
+  }
+  .problem-card:hover .card-num { color: rgba(196,151,58,0.4); }
+  .problem-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .problem-card p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(240,234,216,0.55);
+  }
+
+  /* ─── CONSEQUENCE SECTION ─── */
+  #consequence {
+    padding: 9rem 4rem;
+    background: #050F1A;
+    position: relative;
+    overflow: hidden;
+  }
+  #consequence::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,151,58,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .consequence-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .consequence-visual {
+    position: relative;
+    height: 520px;
+  }
+  .ship-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ship-wrapper {
+    position: relative;
+    animation: shipBob 5s ease-in-out infinite;
+  }
+  @keyframes shipBob {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50% { transform: translateY(-12px) rotate(1.5deg); }
+  }
+
+  .consequence-text {}
+  .consequence-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+  .consequence-headline em { font-style: italic; color: rgba(240,234,216,0.5); }
+  .consequence-body {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: rgba(240,234,216,0.6);
+    margin-bottom: 3rem;
+  }
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .pain-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(240,234,216,0.65);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(196,151,58,0.08);
+  }
+  .pain-list li:last-child { border-bottom: none; }
+  .pain-dot {
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brass);
+    opacity: 0.6;
+  }
+
+  /* Iceberg visual */
+  .iceberg-label {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(240,234,216,0.3);
+  }
+
+  /* ─── GUIDE SECTION ─── */
+  #guide {
+    padding: 9rem 4rem;
+    background: linear-gradient(180deg, #050F1A 0%, var(--navy) 100%);
+  }
+  .guide-inner { max-width: 1200px; margin: 0 auto; }
+  .guide-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    max-width: 680px;
+    margin-bottom: 1.5rem;
+  }
+  .guide-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(240,234,216,0.65);
+    max-width: 560px;
+    margin-bottom: 5rem;
+  }
+
+  /* The Brightwork definition */
+  .brightwork-def {
+    border-left: 2px solid var(--brass);
+    padding: 2rem 3rem;
+    margin-bottom: 5rem;
+    background: rgba(196,151,58,0.04);
+    position: relative;
+  }
+  .brightwork-def::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem; left: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    color: var(--brass);
+    opacity: 0.2;
+    line-height: 1;
+  }
+  .brightwork-def p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(240,234,216,0.85);
+  }
+  .brightwork-def cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-style: normal;
+  }
+
+  /* Services grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: rgba(196,151,58,0.15);
+    border: 2px solid rgba(196,151,58,0.15);
+    margin-bottom: 5rem;
+  }
+  .service-card {
+    background: #080F1C;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .service-card:hover { background: #0C1828; }
+  .service-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(240,234,216,0.5);
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid rgba(196,151,58,0.3);
+    padding: 0.3rem 0.8rem;
+  }
+
+  /* ─── PROCESS ─── */
+  #process {
+    padding: 8rem 4rem;
+    background: var(--navy);
+  }
+  .process-inner { max-width: 1200px; margin: 0 auto; }
+  .process-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--cream);
+    margin-bottom: 5rem;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: calc(16.66% + 1rem);
+    right: calc(16.66% + 1rem);
+    height: 1px;
+    background: linear-gradient(90deg, var(--brass) 0%, rgba(196,151,58,0.3) 100%);
+  }
+  .process-step {
+    padding: 0 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .step-num {
+    width: 4.5rem; height: 4.5rem;
+    border: 1px solid rgba(196,151,58,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    background: var(--navy);
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.4s, background 0.4s;
+  }
+  .process-step:hover .step-num { border-color: var(--brass); background: rgba(196,151,58,0.08); }
+  .step-num span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brass);
+  }
+  .process-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+  .process-step p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(240,234,216,0.5);
+  }
+
+  /* ─── CTA SECTION ─── */
+  #cta {
+    padding: 0 4rem 10rem;
+    background: var(--navy);
+    text-align: center;
+  }
+  .cta-box {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 5rem;
+    border: 1px solid rgba(196,151,58,0.25);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(13,37,64,0.5) 0%, rgba(8,15,28,0.8) 100%);
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -150px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,151,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-box::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+  .cta-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 2rem;
+  }
+  .cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .cta-sub {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(240,234,216,0.55);
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+  .cta-actions { display: flex; justify-content: center; gap: 1.5rem; align-items: center; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid rgba(196,151,58,0.1);
+    background: #040C16;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(240,234,216,0.6);
+  }
+  .footer-logo span { color: var(--brass); }
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(240,234,216,0.25);
+    letter-spacing: 0.1em;
+  }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240,234,216,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--brass); }
+
+  /* Utility */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Page transition overlay */
+  #page-veil {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 9000;
+    transform-origin: top;
+    animation: veilOut 1s cubic-bezier(0.77, 0, 0.175, 1) 0.1s forwards;
+  }
+  @keyframes veilOut {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0); }
+  }
+
+  /* Parallax layers */
+  .parallax { will-change: transform; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    nav.scrolled { padding: 0.8rem 2rem; }
+    #hero { padding: 0 2rem; }
+    .compass-wrap { display: none; }
+    .problem-cards { grid-template-columns: 1fr; }
+    .consequence-inner { grid-template-columns: 1fr; }
+    .consequence-visual { height: 280px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .process-steps::before { display: none; }
+    #problem, #consequence, #guide, #process { padding: 6rem 2rem; }
+    #cta { padding: 0 2rem 6rem; }
+    .cta-box { padding: 4rem 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="page-veil"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Bright<span>work</span></a>
+  <ul class="nav-links">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#guide">Our Approach</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <button class="nav-cta">Chart Your Course</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="stars" id="stars"></div>
+
+  <!-- Compass -->
+  <div class="compass-wrap">
+    <svg class="compass-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="250" cy="250" r="240" stroke="rgba(196,151,58,0.12)" stroke-width="1"/>
+      <circle cx="250" cy="250" r="220" stroke="rgba(196,151,58,0.08)" stroke-width="0.5"/>
+      <circle cx="250" cy="250" r="200" stroke="rgba(196,151,58,0.18)" stroke-width="1.5"/>
+
+      <!-- Degree marks (spinning rose) -->
+      <g class="compass-rose">
+        <!-- 72 tick marks -->
+        <g id="ticks">
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(5 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(10 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(15 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(20 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(25 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(30 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(35 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(40 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(45 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(50 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(55 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(60 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(65 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(70 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(90 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(80 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(85 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(95 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(100 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(120 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(110 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(115 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(125 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(130 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(150 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(140 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(145 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(155 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(160 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(180 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(170 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(175 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(185 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="22" stroke="rgba(196,151,58,0.3)" stroke-width="0.5" transform="rotate(190 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(210 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(240 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(270 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(300 250 250)"/>
+          <line x1="250" y1="12" x2="250" y2="28" stroke="rgba(196,151,58,0.5)" stroke-width="1.5" transform="rotate(330 250 250)"/>
+        </g>
+
+        <!-- Cardinal points -->
+        <text x="250" y="52" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="600" fill="rgba(196,151,58,0.9)">N</text>
+        <text x="250" y="462" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16" fill="rgba(196,151,58,0.5)">S</text>
+        <text x="462" y="255" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16" fill="rgba(196,151,58,0.5)">E</text>
+        <text x="38" y="255" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16" fill="rgba(196,151,58,0.5)">W</text>
+
+        <!-- 8-point star -->
+        <polygon points="250,55 258,110 310,80 282,130 330,140 283,165 300,215 250,195 200,215 217,165 170,140 218,130 190,80 242,110" fill="rgba(196,151,58,0.08)" stroke="rgba(196,151,58,0.25)" stroke-width="0.5"/>
+        <polygon points="250,55 258,110 310,80 282,130 330,140 283,165 300,215 250,195 200,215 217,165 170,140 218,130 190,80 242,110" fill="none" stroke="rgba(196,151,58,0.25)" stroke-width="0.5" transform="rotate(22.5 250 250)"/>
+      </g>
+
+      <!-- Inner rings (static) -->
+      <circle cx="250" cy="250" r="100" stroke="rgba(196,151,58,0.12)" stroke-width="0.5"/>
+      <circle cx="250" cy="250" r="60" stroke="rgba(196,151,58,0.2)" stroke-width="1"/>
+
+      <!-- Needle (slight sway) -->
+      <g class="compass-needle">
+        <polygon points="250,80 244,250 250,260 256,250" fill="rgba(196,151,58,0.9)"/>
+        <polygon points="250,260 244,250 250,420 256,250" fill="rgba(196,151,58,0.2)"/>
+      </g>
+
+      <!-- Center -->
+      <circle cx="250" cy="250" r="10" fill="var(--navy)" stroke="rgba(196,151,58,0.7)" stroke-width="1.5"/>
+      <circle cx="250" cy="250" r="4" fill="rgba(196,151,58,0.9)"/>
+
+      <!-- Decorative cross-hairs -->
+      <line x1="10" y1="250" x2="490" y2="250" stroke="rgba(196,151,58,0.05)" stroke-width="0.5"/>
+      <line x1="250" y1="10" x2="250" y2="490" stroke="rgba(196,151,58,0.05)" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Hero content -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">Operational Architecture</div>
+    <h1 class="hero-h1">
+      Your business is<br>capable of<br><em>far more</em> than<br>you can currently see.
+    </h1>
+    <p class="hero-sub">
+      Right now, you're navigating by feel — managing crises, wearing every hat, and wondering why the freedom you built this for keeps drifting out of reach.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Chart Your Course</button>
+      <a href="#problem" class="btn-ghost">See how we help</a>
+    </div>
+  </div>
+
+  <!-- Wave horizon -->
+  <div class="horizon-lines">
+    <svg class="wave-path" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 C120,120 240,40 360,80 C480,120 600,40 720,80 C840,120 960,40 1080,80 C1200,120 1320,40 1440,80 L1440,220 L0,220 Z" fill="rgba(13,37,64,0.5)"/>
+    </svg>
+    <svg class="wave-path" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,100 C180,60 360,140 540,100 C720,60 900,140 1080,100 C1260,60 1380,120 1440,100 L1440,220 L0,220 Z" fill="rgba(8,24,42,0.6)"/>
+    </svg>
+    <svg class="wave-path" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,120 C240,80 480,160 720,120 C960,80 1200,160 1440,120 L1440,220 L0,220 Z" fill="rgba(196,151,58,0.03)"/>
+    </svg>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section id="problem">
+  <div class="problem-inner">
+    <div class="section-label reveal">The Drift</div>
+    <h2 class="problem-headline reveal" data-delay="2">
+      You built something real. But somewhere between <strong>growth and overwhelm</strong>, you stopped being the captain.
+    </h2>
+    <div class="problem-cards">
+      <div class="problem-card reveal" data-delay="1">
+        <div class="card-num">01</div>
+        <h3>You're working in the business, not on it</h3>
+        <p>Every urgent fire pulls you away from the work only you can do. Your calendar is full, but your vision is starving. The days blur into a fog of Slack, decisions, and delegation failures.</p>
+      </div>
+      <div class="problem-card reveal" data-delay="2">
+        <div class="card-num">02</div>
+        <h3>Your systems don't scale with you</h3>
+        <p>What worked when you were smaller now creates friction at every turn. Processes live in people's heads. Handoffs break down. Growth feels like punishment instead of reward.</p>
+      </div>
+      <div class="problem-card reveal" data-delay="3">
+        <div class="card-num">03</div>
+        <h3>The independence you wanted feels further away</h3>
+        <p>You imagined ownership would feel like freedom. Instead it feels like an anchor. The business needs you for everything, and you're not sure how to change that without the whole thing listing to one side.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSEQUENCE SECTION -->
+<section id="consequence">
+  <div class="consequence-inner">
+    <div class="consequence-visual reveal-left">
+      <svg viewBox="0 0 420 520" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <!-- Water surface -->
+        <path d="M0,260 C70,245 140,275 210,260 C280,245 350,275 420,260 L420,520 L0,520 Z" fill="rgba(8,30,55,0.9)"/>
+        <path d="M0,255 C70,242 140,268 210,255 C280,242 350,268 420,255" fill="none" stroke="rgba(196,151,58,0.2)" stroke-width="1"/>
+
+        <!-- Above waterline label -->
+        <text x="350" y="130" font-family="'Jost', sans-serif" font-size="9" fill="rgba(240,234,216,0.2)" letter-spacing="3" text-anchor="end">VISIBLE</text>
+        <line x1="355" y1="128" x2="390" y2="128" stroke="rgba(240,234,216,0.1)" stroke-width="0.5"/>
+
+        <!-- Below waterline label -->
+        <text x="350" y="380" font-family="'Jost', sans-serif" font-size="9" fill="rgba(196,151,58,0.25)" letter-spacing="3" text-anchor="end">HIDDEN COST</text>
+        <line x1="355" y1="378" x2="390" y2="378" stroke="rgba(196,151,58,0.15)" stroke-width="0.5"/>
+
+        <!-- Iceberg shape above water -->
+        <path d="M190,40 L230,40 L260,130 L280,200 L290,255 L130,255 L140,200 L160,130 Z" fill="rgba(13,40,68,0.95)" stroke="rgba(196,151,58,0.25)" stroke-width="1"/>
+        <!-- Ship on top -->
+        <rect x="185" y="24" width="50" height="18" rx="2" fill="rgba(196,151,58,0.7)" class="ship-wrapper"/>
+        <rect x="195" y="14" width="16" height="12" rx="1" fill="rgba(196,151,58,0.5)"/>
+        <rect x="201" y="8" width="4" height="8" fill="rgba(196,151,58,0.9)"/>
+        <!-- Mast line -->
+        <line x1="203" y1="8" x2="203" y2="2" stroke="rgba(196,151,58,0.6)" stroke-width="0.8"/>
+
+        <!-- Iceberg below water (huge) -->
+        <path d="M130,255 L290,255 L330,370 L310,440 L250,490 L170,490 L110,440 L90,370 Z" fill="rgba(8,18,32,0.95)" stroke="rgba(196,151,58,0.08)" stroke-width="0.5"/>
+
+        <!-- Hidden cost labels below water -->
+        <text x="210" y="300" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.4)" font-style="italic">Burnout</text>
+        <text x="210" y="330" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.35)" font-style="italic">Lost opportunities</text>
+        <text x="210" y="358" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.3)" font-style="italic">Team turnover</text>
+        <text x="210" y="386" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.25)" font-style="italic">Stalled revenue</text>
+        <text x="210" y="414" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.18)" font-style="italic">Family &amp; health toll</text>
+        <text x="210" y="442" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="11" fill="rgba(196,151,58,0.12)" font-style="italic">The life deferred</text>
+      </svg>
+    </div>
+
+    <div class="consequence-text">
+      <div class="section-label reveal">The Real Cost</div>
+      <h2 class="consequence-headline reveal" data-delay="2">
+        Without a course correction, the drift becomes a <em>current you can't fight</em>.
+      </h2>
+      <p class="consequence-body reveal" data-delay="3">
+        The visible problem is operational chaos. But below the surface, the cost is compounding daily — in decisions deferred, in talent that leaves, in the version of your life you keep saying you'll get to when things "settle down."
+      </p>
+      <ul class="pain-list reveal" data-delay="4">
+        <li><span class="pain-dot"></span>Your highest-leverage time disappears into tasks your team should own — but can't, because the systems don't exist yet.</li>
+        <li><span class="pain-dot"></span>Revenue plateaus because growth requires infrastructure you haven't built, and you don't have time to build it.</li>
+        <li><span class="pain-dot"></span>You become the single point of failure — and everyone, including you, knows it.</li>
+        <li><span class="pain-dot"></span>The business that was supposed to fund your freedom becomes the thing that owns you instead.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE SECTION -->
+<section id="guide">
+  <div class="guide-inner">
+    <div class="section-label reveal">The Brightwork Way</div>
+    <h2 class="guide-headline reveal" data-delay="2">We don't just consult. We build the operational vessel your vision deserves.</h2>
+    <p class="guide-intro reveal" data-delay="3">The navigator doesn't abandon the captain — they chart the course, read the conditions, and stay on deck until the destination is in sight.</p>
+
+    <div class="brightwork-def reveal" data-delay="2">
+      <p>In the maritime world, "Brightwork" refers to the polished brass and meticulous woodwork that demands constant, expert attention. It is the work that separates an exceptional vessel from an ordinary one. We partner with ambitious business owners to transform operational chaos into a competitive advantage. We don't just "consult" — we provide the Operational Architecture and fractional leadership support you need to achieve true business independence.</p>
+      <cite>— Brightwork Consulting</cite>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal" data-delay="1">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="20" stroke="rgba(196,151,58,0.5)" stroke-width="1"/>
+          <path d="M24 8 L24 40 M8 24 L40 24" stroke="rgba(196,151,58,0.7)" stroke-width="1"/>
+          <circle cx="24" cy="24" r="4" fill="rgba(196,151,58,0.8)"/>
+          <path d="M24 14 L26 22 L24 24 L22 22 Z" fill="rgba(196,151,58,0.9)"/>
+        </svg>
+        <h3>Operational Architecture</h3>
+        <p>We map your current state, identify every friction point, and design a scalable operational structure that works without you in the middle of every decision. Systems, processes, documentation — built to last.</p>
+        <span class="service-tag">Foundation Work</span>
+      </div>
+      <div class="service-card reveal" data-delay="2">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="36" height="28" rx="2" stroke="rgba(196,151,58,0.5)" stroke-width="1"/>
+          <path d="M14 24 L20 30 L34 18" stroke="rgba(196,151,58,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>Fractional COO Leadership</h3>
+        <p>When you need an experienced operator in your corner on a regular basis — not just a one-time engagement — we embed as your fractional leadership partner. Senior-level thinking, without the full-time overhead.</p>
+        <span class="service-tag">Ongoing Partnership</span>
+      </div>
+      <div class="service-card reveal" data-delay="3">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6 L28 18 L40 18 L30 26 L34 38 L24 30 L14 38 L18 26 L8 18 L20 18 Z" stroke="rgba(196,151,58,0.6)" stroke-width="1" fill="none"/>
+          <path d="M24 6 L28 18 L40 18 L30 26 L34 38 L24 30 L14 38 L18 26 L8 18 L20 18 Z" fill="rgba(196,151,58,0.06)"/>
+        </svg>
+        <h3>Team & Delegation Systems</h3>
+        <p>Your team can only perform as well as the systems around them. We build the accountability structures, communication cadences, and decision frameworks that let your people own their work — completely.</p>
+        <span class="service-tag">People & Structure</span>
+      </div>
+      <div class="service-card reveal" data-delay="4">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 36 L8 20 L16 20 L16 36" stroke="rgba(196,151,58,0.6)" stroke-width="1"/>
+          <path d="M20 36 L20 12 L28 12 L28 36" stroke="rgba(196,151,58,0.7)" stroke-width="1"/>
+          <path d="M32 36 L32 26 L40 26 L40 36" stroke="rgba(196,151,58,0.5)" stroke-width="1"/>
+          <line x1="6" y1="36" x2="42" y2="36" stroke="rgba(196,151,58,0.5)" stroke-width="1"/>
+          <path d="M12 16 L22 10 L32 20 L40 14" stroke="rgba(196,151,58,0.8)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h3>Growth Readiness Planning</h3>
+        <p>Ready to scale, hire, or exit? We conduct the operational due diligence to ensure you're building on solid ground — not expanding on a foundation that was never designed for where you're going next.</p>
+        <span class="service-tag">Strategic Planning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS SECTION -->
+<section id="process">
+  <div class="process-inner">
+    <h2 class="process-headline reveal">The chart from here to there</h2>
+    <div class="process-steps">
+      <div class="process-step reveal" data-delay="1">
+        <div class="step-num"><span>01</span></div>
+        <h3>The Discovery Sail</h3>
+        <p>A focused diagnostic of your operation — where you are, what's holding you back, and what's possible. No templates. No guesswork. Just clarity.</p>
+      </div>
+      <div class="process-step reveal" data-delay="2">
+        <div class="step-num"><span>02</span></div>
+        <h3>The Navigation Chart</h3>
+        <p>We design your custom Operational Architecture: the systems, roles, processes, and decisions frameworks built for your specific business and vision.</p>
+      </div>
+      <div class="process-step reveal" data-delay="3">
+        <div class="step-num"><span>03</span></div>
+        <h3>Sailing, Together</h3>
+        <p>We don't hand you a document and disappear. We stay on deck — implementing, adjusting, training your team — until you're sailing true and the business runs without you in the middle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="cta">
+  <div class="cta-box reveal-scale">
+    <div class="cta-eyebrow">Begin your passage</div>
+    <h2 class="cta-headline">You've built something worth sailing toward. Let's make sure it can get there.</h2>
+    <p class="cta-sub">Book a no-pressure Discovery Call. In 45 minutes, you'll leave with clarity on what's actually holding your business back — whether we work together or not.</p>
+    <div class="cta-actions">
+      <button class="btn-primary">Schedule a Discovery Call</button>
+      <a href="mailto:hello@brightwork.co" class="btn-ghost">Send us a message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Bright<span>work</span></div>
+  <p>© 2025 Brightwork Consulting. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  // Stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*70}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s;opacity:${0.1+Math.random()*0.4};width:${Math.random()<0.1?2:1}px;height:${Math.random()<0.1?2:1}px;`;
+    starsEl.appendChild(s);
+  }
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Parallax on compass
+  const compassWrap = document.querySelector('.compass-wrap');
+  window.addEventListener('scroll', () => {
+    if (!compassWrap) return;
+    const scroll = window.scrollY;
+    compassWrap.style.transform = `translateY(calc(-50% + ${scroll * 0.25}px))`;
+  });
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

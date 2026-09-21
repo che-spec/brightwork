@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior-Level Intelligence. Boutique Partnership. | Brightwork Consulting</title>
+  <meta name="description" content="Meet the Brightwork team—Rachel Moynihan and Che Newton. Senior-level Operational Architects who anchor themselves in your mission and engineer the structural integrity your business needs.">
+  <meta name="keywords" content="Brightwork consulting team, operational architect, Rachel Moynihan, Che Newton, business consulting, fractional leadership, operational excellence">
+  <meta name="author" content="Brightwork Consulting">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://brightworkconsult.com/about">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Senior-Level Intelligence. Boutique Partnership. | Brightwork">
+  <meta property="og:description" content="At Brightwork, you work directly with the architects—not a junior analyst. Meet Rachel and Che, the two-person powerhouse behind your operational transformation.">
+  <meta property="og:image" content="https://brightworkconsult.com/og-image.jpg">
+  <meta property="og:url" content="https://brightworkconsult.com/about">
+  <meta property="og:site_name" content="Brightwork Consulting">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Senior-Level Intelligence. Boutique Partnership. | Brightwork">
+  <meta name="twitter:description" content="Meet the Brightwork team. Senior-level architects who anchor themselves in your mission.">
+  <meta name="twitter:image" content="https://brightworkconsult.com/og-image.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsult.com",
+        "description": "Boutique operational consulting firm specializing in business architecture, fractional leadership, and operational independence.",
+        "member": [
+          {
+            "@type": "Person",
+            "name": "Rachel Moynihan",
+            "jobTitle": "Operational Architect",
+            "worksFor": { "@type": "Organization", "name": "Brightwork Consulting" }
+          },
+          {
+            "@type": "Person",
+            "name": "Che Newton",
+            "jobTitle": "Solutions Catalyst",
+            "worksFor": { "@type": "Organization", "name": "Brightwork Consulting" }
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "434-282-7215",
+          "email": "contact@brightworkconsult.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsult.com"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─── */
+    :root {
+      --color-bg:        #F2F4F6;
+      --color-surface:   #FFFFFF;
+      --color-navy:      #1A3550;
+      --color-primary:   #1E4976;
+      --color-secondary: #3D9B9A;
+      --color-accent:    #C8A96E;
+      --color-text:      #1C2B3A;
+      --color-muted:     #7A8F9E;
+      --color-fog:       #E8ECF0;
+      --color-divider:   #D0D8DF;
+      --font-display:    'Cormorant Garamond', Georgia, serif;
+      --font-body:       'Barlow', system-ui, sans-serif;
+      --nav-h:           72px;
+      --radius:          6px;
+      --shadow-sm:       0 2px 12px rgba(26,53,80,0.07);
+      --shadow-md:       0 8px 32px rgba(26,53,80,0.11);
+      --shadow-lg:       0 20px 60px rgba(26,53,80,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.65; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.2; color: var(--color-navy); }
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 500; }
+    h4 { font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight: 600; }
+    p { font-size: clamp(0.95rem, 1.5vw, 1.05rem); color: var(--color-text); }
+
+    /* ─── Progress Bar ─── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+      z-index: 9999; transition: width 0.1s linear;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+      background: rgba(242,244,246,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      display: flex; align-items: center;
+      padding: 0 clamp(1.5rem, 5vw, 4rem); z-index: 1000;
+      transition: background 0.3s, border-color 0.3s, height 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled { height: 60px; background: rgba(242,244,246,0.97); border-color: var(--color-divider); box-shadow: var(--shadow-sm); }
+    .nav-inner { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--color-navy); letter-spacing: 0.02em; display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand svg { color: var(--color-secondary); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-muted); transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--color-secondary); transform: scaleX(0); transition: transform 0.25s; }
+    .nav-links a:hover { color: var(--color-navy); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--color-primary); color: #fff !important; padding: 0.5rem 1.25rem; border-radius: var(--radius); font-size: 0.8rem !important; font-weight: 600 !important; letter-spacing: 0.05em !important; transition: background 0.2s, transform 0.2s !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--color-navy) !important; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--color-navy); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-drawer { position: fixed; inset: 0; background: rgba(242,244,246,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .mobile-drawer.open { opacity: 1; pointer-events: all; }
+    .mobile-drawer a { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--color-navy); transition: color 0.2s; }
+    .mobile-drawer a:hover { color: var(--color-secondary); }
+
+    /* ─── Shared Utilities ─── */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 1rem; }
+    .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--color-secondary); }
+    .wave-divider { line-height: 0; overflow: hidden; }
+    .wave-divider svg { display: block; width: 100%; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-primary); color: #fff; padding: 0.85rem 2rem; border-radius: var(--radius); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+    .btn-primary:hover { background: var(--color-navy); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,53,80,0.2); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--color-primary); border: 1.5px solid var(--color-primary); padding: 0.85rem 2rem; border-radius: var(--radius); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s, color 0.2s; }
+    .btn-secondary:hover { background: var(--color-primary); color: #fff; }
+    .btn-light { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; color: var(--color-primary); padding: 0.85rem 2rem; border-radius: var(--radius); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .btn-light:hover { background: var(--color-secondary); color: #fff; transform: translateY(-2px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 72vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: calc(var(--nav-h) + 4rem) clamp(1.5rem, 5vw, 4rem) 5rem;
+      position: relative; overflow: hidden; background: var(--color-bg);
+    }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-bg::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 400px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath d='M0,260 C240,320 480,200 720,250 C960,300 1200,180 1440,230 L1440,400 L0,400 Z' fill='%231E4976' opacity='0.05'/%3E%3Cpath d='M0,300 C360,240 720,360 1080,280 C1260,240 1380,320 1440,340 L1440,400 L0,400 Z' fill='%233D9B9A' opacity='0.06'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(26,53,80,0.055) 1px, transparent 1px); background-size: 32px 32px; }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 1.5rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--color-secondary); }
+    .hero h1 { max-width: 20ch; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--color-secondary); }
+    .hero-sub { max-width: 60ch; font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--color-muted); margin-bottom: 0; line-height: 1.75; font-style: italic; font-family: var(--font-display); font-weight: 300; }
+
+    /* ─── TEAM SECTION ─── */
+    #team { background: var(--color-surface); }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+    .team-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-divider);
+      border-radius: 14px; overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .team-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+    .team-card-header {
+      padding: 2.5rem 2.5rem 0;
+      display: flex; gap: 1.75rem; align-items: flex-start;
+    }
+    .team-photo {
+      flex-shrink: 0; width: 90px; height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-fog), color-mix(in srgb, var(--color-secondary) 18%, var(--color-fog)));
+      border: 2px dashed color-mix(in srgb, var(--color-secondary) 30%, transparent);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .team-photo svg { width: 32px; height: 32px; color: var(--color-muted); opacity: 0.45; }
+    .team-photo .photo-size { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: var(--color-muted); white-space: nowrap; }
+    .team-meta { padding-top: 0.25rem; }
+    .team-name { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; color: var(--color-navy); line-height: 1.1; margin-bottom: 0.3rem; }
+    .team-title {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: color-mix(in srgb, var(--color-secondary) 12%, white);
+      border: 1px solid color-mix(in srgb, var(--color-secondary) 25%, transparent);
+      color: var(--color-secondary); font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 100px; margin-bottom: 0.6rem;
+    }
+
+    .team-card-quote {
+      margin: 1.75rem 2.5rem 0;
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-secondary);
+      padding: 1.25rem 1.25rem 1.25rem 1.1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .team-card-quote p { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; font-weight: 300; line-height: 1.6; color: var(--color-navy); }
+
+    .team-card-body { padding: 1.75rem 2.5rem 2.5rem; }
+    .team-card-body > p { color: var(--color-muted); line-height: 1.72; margin-bottom: 1.5rem; font-size: 0.97rem; }
+
+    .team-strengths { display: flex; flex-direction: column; gap: 1rem; }
+    .strength-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--color-surface); border: 1px solid var(--color-divider);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem;
+      transition: border-color 0.25s;
+    }
+    .strength-item:hover { border-color: rgba(61,155,154,0.35); }
+    .strength-icon { flex-shrink: 0; width: 36px; height: 36px; background: linear-gradient(135deg, rgba(61,155,154,0.12), rgba(30,73,118,0.06)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--color-secondary); }
+    .strength-icon svg { width: 16px; height: 16px; }
+    .strength-item h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .strength-item p { font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; }
+
+    /* Accent color variant for Che */
+    .team-card.catalyst .team-title { background: color-mix(in srgb, var(--color-accent) 10%, white); border-color: color-mix(in srgb, var(--color-accent) 25%, transparent); color: color-mix(in srgb, var(--color-accent) 85%, var(--color-navy)); }
+    .team-card.catalyst .team-card-quote { border-left-color: var(--color-accent); }
+    .team-card.catalyst .strength-icon { background: linear-gradient(135deg, rgba(200,169,110,0.12), rgba(30,73,118,0.05)); color: var(--color-accent); }
+    .team-card.catalyst .strength-item:hover { border-color: rgba(200,169,110,0.35); }
+    .team-photo.catalyst-photo { background: linear-gradient(135deg, var(--color-fog), color-mix(in srgb, var(--color-accent) 15%, var(--color-fog))); border-color: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+    /* ─── PARTNERSHIP SECTION ─── */
+    #partnership { background: var(--color-navy); position: relative; overflow: hidden; color: #fff; }
+    #partnership::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(ellipse at 80% 30%, rgba(61,155,154,0.14) 0%, transparent 55%), radial-gradient(ellipse at 10% 80%, rgba(200,169,110,0.08) 0%, transparent 45%);
+    }
+    #partnership .section-inner { position: relative; z-index: 1; }
+    #partnership h2, #partnership h4 { color: #fff; }
+    #partnership .section-label { color: var(--color-secondary); }
+    #partnership .section-label::before { background: var(--color-secondary); }
+
+    .partnership-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .partnership-text h2 { margin-bottom: 1.25rem; }
+    .partnership-text > p { color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 2rem; }
+    .partnership-reasons { display: flex; flex-direction: column; gap: 1.25rem; }
+    .reason-item { display: flex; gap: 1.1rem; align-items: flex-start; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 1.35rem; transition: background 0.3s; }
+    .reason-item:hover { background: rgba(255,255,255,0.08); }
+    .reason-num { flex-shrink: 0; width: 32px; height: 32px; background: rgba(61,155,154,0.2); border: 1px solid rgba(61,155,154,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--color-secondary); }
+    .reason-item h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .reason-item p { font-size: 0.9rem; color: rgba(255,255,255,0.62); line-height: 1.6; }
+
+    .partnership-callout {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 2.5rem;
+    }
+    .partnership-callout-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1.25rem; }
+    .partnership-callout h3 { font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
+    .callout-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; }
+    .callout-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.75); font-size: 0.78rem; font-weight: 500; padding: 0.35rem 0.85rem; border-radius: 100px; }
+    .callout-badge svg { width: 11px; height: 11px; color: var(--color-secondary); }
+    .partnership-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 1.75rem 0; }
+    .partnership-callout p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.7; }
+
+    /* ─── PROCESS SECTION ─── */
+    #process { background: var(--color-bg); }
+    .process-intro { max-width: 64ch; margin-bottom: 4rem; }
+    .process-intro p { color: var(--color-muted); line-height: 1.75; margin-top: 1rem; }
+
+    .phases { display: flex; flex-direction: column; gap: 0; }
+    .phase {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      align-items: stretch; position: relative;
+    }
+    /* Vertical connector line */
+    .phase:not(:last-child)::after {
+      content: ''; position: absolute;
+      left: 100px; top: calc(80px + 1rem); bottom: -2rem;
+      width: 1px; background: linear-gradient(180deg, var(--color-secondary), transparent);
+      transform: translateX(-0.5px);
+    }
+    .phase-left { display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem; }
+    .phase-num-wrap {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; flex-shrink: 0;
+    }
+    .phase-num-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--color-secondary), var(--color-accent)); z-index: 0; }
+    .phase-num-inner { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 50%; background: var(--color-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .phase-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--color-navy); line-height: 1; }
+    .phase-num-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-secondary); }
+    .phase-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-top: 0.75rem; text-align: center; }
+
+    .phase-content {
+      background: var(--color-surface); border: 1px solid var(--color-divider);
+      border-radius: 12px; padding: 2.25rem; margin-bottom: 2.5rem;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .phase-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--color-secondary), var(--color-accent)); }
+    .phase-content:hover { box-shadow: var(--shadow-md); border-color: rgba(61,155,154,0.25); }
+
+    .phase-tagline { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; font-style: italic; color: var(--color-muted); margin-bottom: 0.3rem; }
+    .phase-content h3 { color: var(--color-navy); margin-bottom: 1rem; }
+    .phase-content > p { color: var(--color-muted); line-height: 1.72; margin-bottom: 1.5rem; font-size: 0.97rem; }
+
+    .phase-items { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1.75rem; }
+    .phase-item { display: flex; gap: 0.85rem; align-items: flex-start; }
+    .phase-bullet { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--color-secondary); margin-top: 0.55rem; }
+    .phase-item h4 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .phase-item p { font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; }
+
+    .phase-outcome {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--color-secondary) 8%, white), color-mix(in srgb, var(--color-accent) 5%, white));
+      border: 1px solid color-mix(in srgb, var(--color-secondary) 20%, transparent);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem;
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .outcome-icon { flex-shrink: 0; color: var(--color-secondary); margin-top: 0.1rem; }
+    .outcome-icon svg { width: 16px; height: 16px; }
+    .phase-outcome strong { font-family: var(--font-display); font-weight: 600; color: var(--color-navy); font-size: 1rem; }
+    .phase-outcome p { font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; margin-top: 0.2rem; }
+
+    /* ─── FINAL CTA ─── */
+    #cta {
+      background: linear-gradient(160deg, #0F2035 0%, #1A3550 60%, #1A3D50 100%);
+      position: relative; overflow: hidden; color: #fff; text-align: center;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    #cta::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(ellipse at 60% 30%, rgba(61,155,154,0.18) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(200,169,110,0.1) 0%, transparent 45%);
+    }
+    #cta .section-inner { position: relative; z-index: 1; }
+    #cta .section-label { color: var(--color-accent); justify-content: center; }
+    #cta .section-label::before { background: var(--color-accent); }
+    #cta .section-label::after { content: ''; display: block; width: 20px; height: 1px; background: var(--color-accent); }
+    #cta h2 { color: #fff; max-width: 18ch; margin: 0 auto 1.25rem; }
+    #cta p { color: rgba(255,255,255,0.68); max-width: 52ch; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-contact { margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .cta-contact a { color: rgba(255,255,255,0.6); font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .cta-contact a:hover { color: var(--color-secondary); }
+    .cta-contact span { color: rgba(255,255,255,0.2); }
+
+    /* ─── Footer ─── */
+    footer { background: var(--color-navy); color: rgba(255,255,255,0.6); padding: 3rem clamp(1.5rem, 5vw, 4rem); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: #fff; }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--color-secondary); }
+    .footer-copy { font-size: 0.8rem; width: 100%; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1.5rem; }
+
+    /* ─── Animations ─── */
+    [data-animate] { opacity: 0; transform: translateY(36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    [data-animate].visible { opacity: 1; transform: translateY(0); }
+    [data-animate] .team-card:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .team-card:nth-child(2) { transition-delay: 0.15s; }
+    [data-animate] .reason-item:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .reason-item:nth-child(2) { transition-delay: 0.13s; }
+    [data-animate] .reason-item:nth-child(3) { transition-delay: 0.21s; }
+    [data-animate] .phase:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .phase:nth-child(2) { transition-delay: 0.15s; }
+    [data-animate] .phase:nth-child(3) { transition-delay: 0.25s; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .partnership-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .phase { grid-template-columns: 120px 1fr; gap: 2rem; }
+      .phase:not(:last-child)::after { left: 60px; }
+      .phase-num-wrap { width: 60px; height: 60px; }
+      .phase-num { font-size: 1.2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .phase { grid-template-columns: 1fr; }
+      .phase-left { flex-direction: row; align-items: center; gap: 1rem; padding-top: 0; margin-bottom: 1rem; }
+      .phase-label { margin-top: 0; text-align: left; }
+      .phase:not(:last-child)::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.4rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .team-card-header { flex-direction: column; gap: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate], * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Navigation -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/></svg>
+      Brightwork
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-home.html" class="drawer-link">Home</a></li>
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-about.html" class="drawer-link">About</a></li>      
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-consulting3.html" class="drawer-link">Services</a></li>
+      <li><a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-contact.html" class="drawer-link">Contact Us</a></li>
+      <li><a href="#cta" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-home.html" class="drawer-link">Home</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-about.html" class="drawer-link">About</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-consulting3.html" class="drawer-link">Services</a>
+  <a href="https://brightworkconsult.com/megansworld/demo/files/brightwork-contact.html" class="drawer-link">Contact Us</a>
+  <a href="#cta" class="drawer-link">Get Started</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">About Brightwork</div>
+    <h1>Senior-Level Intelligence. <em>Boutique</em> Partnership.</h1>
+    <p class="hero-sub">"Most consulting firms send a junior analyst to do a senior partner's job. At Brightwork, you work directly with the architects. We don't just 'manage' your project; we anchor ourselves in your mission."</p>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,30 C360,70 1080,0 1440,30 L1440,0 L0,0 Z" fill="#F2F4F6"/>
+    <path d="M0,30 C360,70 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+  </svg>
+</div>
+
+<!-- ─── TEAM ─── -->
+<section id="team">
+  <div class="section-inner">
+    <div style="margin-bottom:3.5rem;" data-animate>
+      <div class="section-label">The Architects</div>
+      <h2>Meet the Crew</h2>
+      <p style="max-width:58ch; margin-top:0.75rem; color:var(--color-muted); line-height:1.7;">Two specialists. One unified strategy. We bring senior-level expertise directly to your business—no layers, no hand-offs, no junior stand-ins.</p>
+    </div>
+    <div class="team-grid" data-animate>
+
+      <!-- Rachel -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-photo">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="photo-size">Photo 400×400px</span>
+          </div>
+          <div class="team-meta">
+            <div class="team-name">Rachel Moynihan</div>
+            <div class="team-title">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              The Operational Architect
+            </div>
+          </div>
+        </div>
+        <div class="team-card-quote">
+          <p>"We don't just patch leaks; we engineer the structural integrity that allows a vision to become a legacy."</p>
+        </div>
+        <div class="team-card-body">
+          <p>Rachel sits at the high-stakes intersection of Data Curiosity and Operational Grit. She doesn't see a "messy spreadsheet" as a chore—she sees it as a puzzle that, once solved, unlocks hours of freedom for the business owner.</p>
+          <div class="team-strengths">
+            <div class="strength-item">
+              <div class="strength-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <h4>The Architect's Eye</h4>
+                <p>Rachel looks past surface-level symptoms to find the structural flaw in your data. She designs the ERPs, financial models, and workflows that turn a fragile hustle into a resilient operation.</p>
+              </div>
+            </div>
+            <div class="strength-item">
+              <div class="strength-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h4>Her Mission</h4>
+                <p>To move you from "Chief Problem Solver" to "True Business Owner." She builds the Brightwork—meticulous, polished systems—that ensure your company runs whether you're in the office or on the coast.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Che -->
+      <div class="team-card catalyst">
+        <div class="team-card-header">
+          <div class="team-photo catalyst-photo">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="photo-size">Photo 400×400px</span>
+          </div>
+          <div class="team-meta">
+            <div class="team-name">Che Newton</div>
+            <div class="team-title">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              The Solutions Catalyst
+            </div>
+          </div>
+        </div>
+        <div class="team-card-quote" style="border-left-color: var(--color-accent);">
+          <p>"Technology should be a wind in your sails, not an anchor dragging you down."</p>
+        </div>
+        <div class="team-card-body">
+          <p>Che is the bridge between your grandest strategic goals and the digital tools required to reach them. He understands that for a small business, a tool is only "good" if the team actually uses it well.</p>
+          <div class="team-strengths">
+            <div class="strength-item">
+              <div class="strength-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <div>
+                <h4>The Catalyst's Edge</h4>
+                <p>Che specializes in the "Tech Bridge"—testing, integrating, and automating the software that drives your daily operations. From web design to 3rd-party automations, your digital brightwork is as polished as your physical operations.</p>
+              </div>
+            </div>
+            <div class="strength-item">
+              <div class="strength-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div>
+                <h4>His Mission</h4>
+                <p>To eliminate the "Tech Friction" that causes business burnout. He makes sure your tools talk to each other so your people don't spend their lives doing manual double-entry.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,20 C480,60 960,0 1440,30 L1440,0 L0,0 Z" fill="#FFFFFF"/>
+    <path d="M0,20 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#1A3550"/>
+  </svg>
+</div>
+
+<!-- ─── PARTNERSHIP ─── -->
+<section id="partnership">
+  <div class="section-inner">
+    <div class="partnership-layout">
+      <div class="partnership-text" data-animate>
+        <div class="section-label">Why Brightwork</div>
+        <h2>Why This Partnership Works for Small to Medium Business Owners</h2>
+        <p>We aren't some massive, faceless agency. We're a two-person powerhouse built on Humble Leadership and Collaborative Excellence. When you work with Brightwork, you get the architects—not their assistants.</p>
+        <div class="partnership-reasons" data-animate>
+          <div class="reason-item">
+            <div class="reason-num">01</div>
+            <div>
+              <h4>We Listen First</h4>
+              <p>We don't walk through your door with a pre-packaged "solution." We take the time to learn your specific "vessel"—your culture, your team, and your history—before we ever draw a blueprint.</p>
+            </div>
+          </div>
+          <div class="reason-item">
+            <div class="reason-num">02</div>
+            <div>
+              <h4>We Build for the Next Generation</h4>
+              <p>We don't just chase this quarter's profits. We build systems sturdy enough to be passed down—infrastructure designed to outlast trends and outlive the chaos that stunts most businesses.</p>
+            </div>
+          </div>
+          <div class="reason-item">
+            <div class="reason-num">03</div>
+            <div>
+              <h4>Foundation First</h4>
+              <p>We refuse to build "fluff." If your data foundation is weak, we fix it before we even try to scale. That's the experience-driven result we promise—and the only standard we'll accept.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="partnership-callout" data-animate>
+        <div class="partnership-callout-label">A Two-Person Powerhouse</div>
+        <h3>We aren't a faceless agency. We're your partners in the engine room.</h3>
+        <p>Every engagement is handled directly by Rachel and Che—the Operational Architect and the Solutions Catalyst working in concert. No junior analysts. No hand-offs. No diluted expertise.</p>
+        <div class="partnership-divider"></div>
+        <p>Our Humble Leadership and Collaborative Excellence aren't just values on a page—they're the operating principles that govern every meeting, every audit, and every system we build on your behalf.</p>
+        <div class="callout-badges">
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No Junior Analysts</div>
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Direct Architect Access</div>
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Humble Leadership</div>
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Foundation First</div>
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Built to Last</div>
+          <div class="callout-badge"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> SMB-Focused</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,30 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#1A3550"/>
+    <path d="M0,30 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#F2F4F6"/>
+  </svg>
+</div>
+
+<!-- ─── PROCESS ─── -->
+<section id="process">
+  <div class="section-inner">
+    <div class="process-intro" data-animate>
+      <div class="section-label">The Voyage</div>
+      <h2>From Chaos to Clarity: The Process</h2>
+      <p>To transform operational chaos into a competitive advantage, we follow a meticulous, experience-driven roadmap designed to build sustainable business independence. We don't just patch leaks; we engineer the structural integrity your vessel needs to flourish.</p>
+    </div>
+
+    <div class="phases" data-animate>
+
+      <!-- Phase 01 -->
+      <div class="phase">
+        <div class="phase-left">
+          <div class="phase-num-wrap">
+            <div class="phase-num-inner">
+              <div class="phase-num">01</div>
+              <div class="phase-num-label">Phase</div>
+            </div>
+          </div>
+          <div class="phase-label">The Diagnostic</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tagline">"Checking the Hull and Finding the Leaks."</div>
+          <h3>The Deep Query</h3>
+          <p>Before mapping a new course, we have to know exactly where your current vessel is taking on water. This isn't a surface-level glance; it's a deep-sea dive into the "Why" behind your operational friction.</p>
+          <div class="phase-items">
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>The Data Audit</h4>
+                <p>We hunt for "Invisible Leaks" in your data pipelines and financial spreadsheets to find exactly where numbers don't match reality.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>Workflow Mapping</h4>
+                <p>We observe your daily "hustle" to identify the manual bottlenecks and growth-killers that are eating your profit margins.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>The Friction Report</h4>
+                <p>You receive an unvarnished look at your hurdles—from tech tools that don't talk to each other, to "Founder-dependent" processes that stall your next milestone.</p>
+              </div>
+            </div>
+          </div>
+          <div class="phase-outcome">
+            <div class="outcome-icon"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <strong>The Outcome</strong>
+              <p>A baseline of truth and a pinpointed list of what needs "Brightwork" attention first.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 02 -->
+      <div class="phase">
+        <div class="phase-left">
+          <div class="phase-num-wrap">
+            <div class="phase-num-inner">
+              <div class="phase-num">02</div>
+              <div class="phase-num-label">Phase</div>
+            </div>
+          </div>
+          <div class="phase-label">The Design</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tagline">"Charting the Course and Strengthening the Structure."</div>
+          <h3>The Polished Blueprint</h3>
+          <p>Insight without a plan is just a list of problems. In this phase, we move from diagnosis to Operations Architecture—designing the systems your business needs to survive a storm and scale in the sun.</p>
+          <div class="phase-items">
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>Custom Architecture</h4>
+                <p>We don't do "off-the-shelf." We design a bespoke Business Manual and scalable systems that fit the way you and your team actually work.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>The Tech Stack Strategy</h4>
+                <p>We vet the specific tools—from CRM to ERP—that act as the wind in your sails, ensuring they are integrated, reliable, and scale-ready.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>The Scale Roadmap</h4>
+                <p>We build the "Brightwork" plan—a step-by-step guide to removing you as the primary bottleneck so you can focus on high-level leadership and vision.</p>
+              </div>
+            </div>
+          </div>
+          <div class="phase-outcome">
+            <div class="outcome-icon"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <strong>The Outcome</strong>
+              <p>A visual, actionable blueprint that moves you from "Emergency Mode" to "Strategic Command."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 03 -->
+      <div class="phase">
+        <div class="phase-left">
+          <div class="phase-num-wrap">
+            <div class="phase-num-inner">
+              <div class="phase-num">03</div>
+              <div class="phase-num-label">Phase</div>
+            </div>
+          </div>
+          <div class="phase-label">The Integration</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-tagline">"Setting the Sails and Training the Crew."</div>
+          <h3>The System Build</h3>
+          <p>This is where vision becomes reality. We don't just hand you a blueprint; we roll up our sleeves as fractional leaders to build the engine alongside you.</p>
+          <div class="phase-items">
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>Meticulous Integration</h4>
+                <p>We handle the heavy lifting—connecting your software and automating manual "busy work" to create cohesive growth from lead to closure.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>Crew Readiness</h4>
+                <p>A system is only as good as the people using it. We train your team on new standards, ensuring they feel empowered by the tools rather than burdened by them.</p>
+              </div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-bullet"></div>
+              <div>
+                <h4>Sustainable Independence</h4>
+                <p>We stay with you until the gears turn smoothly—ensuring your data is "Bright" (insightful) and your systems "Work" (reliable) so the business can eventually run without you at the helm.</p>
+              </div>
+            </div>
+          </div>
+          <div class="phase-outcome">
+            <div class="outcome-icon"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <strong>The Outcome</strong>
+              <p>A high-performance, polished operation that delivers a competitive advantage and a lasting legacy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="60">
+    <path d="M0,10 C480,60 960,0 1440,40 L1440,0 L0,0 Z" fill="#F2F4F6"/>
+    <path d="M0,10 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#0F2035"/>
+  </svg>
+</div>
+
+<!-- ─── CTA ─── -->
+<section id="cta" data-animate>
+  <div class="section-inner">
+    <div class="section-label">Start the Voyage</div>
+    <h2>Ready to Work Directly With the Architects?</h2>
+    <p>No junior analysts. No pre-packaged solutions. Just senior-level intelligence anchored in your mission—and a boutique partnership built to last.</p>
+    <div class="cta-buttons">
+      <a href="mailto:contact@brightworkconsult.com" class="btn-light">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule Your Strategy Session
+      </a>
+      <a href="/services.html" class="btn-secondary" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">
+        Explore Our Services
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="cta-contact">
+      <a href="tel:4342827215">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013.08 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72c.127.96.36 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        434-282-7215
+      </a>
+      <span>|</span>
+      <a href="mailto:contact@brightworkconsult.com">contact@brightworkconsult.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="16" height="16" fill="none" stroke="rgba(61,155,154,0.8)" stroke-width="2" viewBox="0 0 24 24" style="display:inline;margin-right:0.4rem;vertical-align:middle;"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/></svg>
+      Brightwork
+    </div>
+    <ul class="footer-links">
+      <li><a href="#team">The Team</a></li>
+      <li><a href="#partnership">Why Us</a></li>
+      <li><a href="#process">The Process</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Brightwork Consulting. All rights reserved. &nbsp;|&nbsp; contact@brightworkconsult.com &nbsp;|&nbsp; 434-282-7215</p>
+  </div>
+</footer>
+
+<script>
+  // Progress Bar
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    progressBar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  // Nav Shrink
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80), { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', () => {
+    hamburger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = '';
+  }));
+
+  // Smooth Scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // IntersectionObserver
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+
+  // Active Nav
+  const secs = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--color-navy)' : ''; });
+  }, { passive: true });
+</script>
+</body>
+</html>

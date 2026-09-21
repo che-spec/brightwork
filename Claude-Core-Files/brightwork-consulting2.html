@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operational Excellence & Business Architecture | Brightwork Consulting</title>
+  <meta name="description" content="Brightwork transforms operational chaos into competitive advantage. We provide Operational Architecture and fractional leadership for ambitious small business owners.">
+  <meta name="keywords" content="operational consulting, small business consulting, business architecture, fractional COO, operational excellence, process improvement, business systems">
+  <meta name="author" content="Brightwork Consulting">
+<meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://brightworkconsulting.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Operational Excellence Is the Brightwork of Your Business">
+  <meta property="og:description" content="We partner with ambitious business owners to transform operational chaos into a competitive advantage through Operational Architecture and fractional leadership.">
+  <meta property="og:image" content="https://brightworkconsulting.com/og-image.jpg">
+  <meta property="og:url" content="https://brightworkconsulting.com/">
+  <meta property="og:site_name" content="Brightwork Consulting">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Operational Excellence Is the Brightwork of Your Business">
+  <meta name="twitter:description" content="We partner with ambitious business owners to transform operational chaos into a competitive advantage.">
+  <meta name="twitter:image" content="https://brightworkconsulting.com/og-image.jpg">
+  <meta name="twitter:site" content="@brightworkconsulting">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsulting.com",
+        "logo": "https://brightworkconsulting.com/logo.png",
+        "description": "Brightwork transforms operational chaos into competitive advantage through Operational Architecture and fractional leadership support for small businesses.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "hello@brightworkconsulting.com"
+        },
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "name": "Brightwork Consulting",
+        "url": "https://brightworkconsulting.com",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://brightworkconsulting.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Operational Architecture",
+        "provider": {
+          "@type": "Organization",
+          "name": "Brightwork Consulting"
+        },
+        "description": "Fractional operational leadership and business architecture design for small business owners seeking independence and scalability."
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --color-bg:        #0a0f1a;
+      --color-surface:   #111827;
+      --color-surface2:  #0d1520;
+      --color-primary:   #c9a84c;
+      --color-secondary: #7eb8c9;
+      --color-text:      #e8e0d0;
+      --color-muted:     #8a9ab0;
+      --color-border:    rgba(201,168,76,0.2);
+      --color-brass:     #c9a84c;
+      --font-display:    'Cormorant Garamond', Georgia, serif;
+      --font-body:       'Crimson Pro', Georgia, serif;
+      --max-w:           1200px;
+      --section-pad:     clamp(5rem, 10vw, 9rem);
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Scroll Progress Bar ─── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(10,15,26,0.95);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .nav-logo svg { width: 28px; height: 28px; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+    .nav-links a:not(.nav-cta) {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:not(.nav-cta):hover { color: var(--color-primary); }
+    .nav-cta {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+      padding: 0.55rem 1.3rem;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      line-height: 1.4;
+      white-space: nowrap;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nav-cta:hover {
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--color-primary);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Drawer */
+    .nav-drawer {
+      position: fixed;
+      top: 0; right: -100%;
+      width: min(320px, 85vw);
+      height: 100vh;
+      background: var(--color-surface);
+      border-left: 1px solid var(--color-border);
+      z-index: 999;
+      padding: 5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-drawer.open { right: 0; }
+    .nav-drawer a {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 1rem;
+      transition: color 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--color-primary); }
+    .drawer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+    }
+    .drawer-overlay.open { display: block; }
+
+    /* ─── Rope Divider ─── */
+    .rope-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .rope-divider svg { display: block; width: 100%; }
+
+    /* ─── Section Animations ─── */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    [data-animate].visible { opacity: 1; transform: translateY(0); }
+    [data-animate] .pillar-card:nth-child(1) { transition-delay: 0.1s; }
+    [data-animate] .pillar-card:nth-child(2) { transition-delay: 0.22s; }
+    [data-animate] .pillar-card:nth-child(3) { transition-delay: 0.34s; }
+    [data-animate] .value-card:nth-child(1) { transition-delay: 0.05s; }
+    [data-animate] .value-card:nth-child(2) { transition-delay: 0.15s; }
+    [data-animate] .value-card:nth-child(3) { transition-delay: 0.25s; }
+    [data-animate] .value-card:nth-child(4) { transition-delay: 0.35s; }
+    [data-animate] .value-card:nth-child(5) { transition-delay: 0.45s; }
+
+    /* ─── Utility ─── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #dbb85e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.55);
+      color: var(--color-primary);
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 30px;
+      background: var(--color-primary);
+      opacity: 0.5;
+    }
+    .gold-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--color-primary);
+      margin: 1.5rem 0 2rem;
+    }
+    .gold-rule.centered { margin-left: auto; margin-right: auto; }
+
+    /* ─── Cursor Glow ─── */
+    .cursor-glow {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
+      transform: translate(calc(var(--cx, -9999px) - 50%), calc(var(--cy, -9999px) - 50%));
+      z-index: 1;
+      will-change: transform;
+      transition: transform 0.12s ease-out;
+    }
+
+    /* ─── Image Placeholder ─── */
+    .img-placeholder {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-surface), color-mix(in srgb, var(--color-primary) 10%, var(--color-surface)));
+      border: 1.5px dashed rgba(201,168,76,0.3);
+      overflow: hidden;
+    }
+    .img-placeholder__inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--color-muted);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+    .img-placeholder__inner svg { opacity: 0.4; }
+    .img-placeholder__inner small { font-size: 0.75rem; opacity: 0.6; }
+
+    /* ─── Stars ─── */
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.7; }
+    }
+
+    /* ═══════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #0e1f3a 0%, var(--color-bg) 70%);
+    }
+    .hero-horizon {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(180deg, transparent, rgba(10,20,40,0.6));
+      pointer-events: none;
+    }
+    /* Animated ocean waves at bottom */
+    .hero-waves {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      overflow: hidden;
+    }
+    .hero-waves svg { width: 100%; }
+    .wave1 { animation: wave-shift 8s ease-in-out infinite; }
+    .wave2 { animation: wave-shift 6s ease-in-out infinite reverse; opacity: 0.6; }
+    @keyframes wave-shift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-3%); }
+    }
+
+    /* Compass Rose Background */
+    .compass-bg {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(400px, 55vw, 750px);
+      opacity: 0.04;
+      pointer-events: none;
+      animation: compass-rotate 90s linear infinite;
+    }
+    @keyframes compass-rotate {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to   { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding: 8rem 2rem 6rem;
+    }
+    .hero-content .tag { background: rgba(201,168,76,0.06); }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1.8rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-primary);
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--color-muted);
+      max-width: 580px;
+      margin-bottom: 0.75rem;
+      line-height: 1.8;
+    }
+    .hero-subtitle strong { color: var(--color-text); font-weight: 500; }
+    .hero-definition {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      font-style: italic;
+      border-left: 2px solid var(--color-secondary);
+      padding-left: 1rem;
+      margin: 1.5rem 0 2.5rem;
+      opacity: 0.85;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(180deg, var(--color-primary), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ═══════════════════════════════════════
+       ARCHITECT MENTALITY SECTION
+    ═══════════════════════════════════════ */
+    #mentality {
+      padding: var(--section-pad) 0;
+      background: var(--color-surface);
+      position: relative;
+    }
+    #mentality::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+    }
+    .mentality-intro {
+      max-width: 680px;
+      margin-bottom: 4rem;
+    }
+    .mentality-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .mentality-intro .subhead {
+      font-size: 1.15rem;
+      color: var(--color-secondary);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .mentality-body {
+      color: var(--color-muted);
+      line-height: 1.85;
+    }
+    .mentality-body strong { color: var(--color-primary); font-weight: 500; }
+
+    /* Three Pillars */
+    .pillars-header {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      color: var(--color-text);
+      margin: 3.5rem 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pillars-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+    }
+    .pillar-card {
+      background: var(--color-surface2);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+    }
+    .pillar-card:hover { background: rgba(201,168,76,0.04); }
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.25rem;
+      color: var(--color-primary);
+    }
+    .pillar-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .pillar-card p {
+      color: var(--color-muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+    .pillar-card p strong { color: var(--color-secondary); font-weight: 500; }
+    .mentality-link {
+      margin-top: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-primary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .mentality-link:hover { gap: 1.25rem; }
+    .mentality-link svg { transition: transform 0.2s; }
+    .mentality-link:hover svg { transform: translateX(4px); }
+
+    /* ═══════════════════════════════════════
+       CLARITY SECTION
+    ═══════════════════════════════════════ */
+    #clarity {
+      padding: var(--section-pad) 0;
+      position: relative;
+      background: var(--color-bg);
+      overflow: hidden;
+    }
+    .clarity-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .clarity-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .clarity-text p {
+      color: var(--color-muted);
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
+    .clarity-visual {
+      position: relative;
+    }
+    .clarity-img {
+      padding-bottom: 100%;
+      border-radius: 2px;
+    }
+    /* Compass dial overlay on clarity visual */
+    .compass-dial {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .compass-dial svg {
+      width: 70%;
+      opacity: 0.15;
+      animation: compass-rotate 60s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════
+       BRIGHTWORK SPLIT SECTION
+    ═══════════════════════════════════════ */
+    #split {
+      padding: var(--section-pad) 0;
+      background: var(--color-surface);
+      position: relative;
+    }
+    #split::before, #split::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+    }
+    #split::before { top: 0; }
+    #split::after { bottom: 0; }
+    .split-heading {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .split-heading h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .split-heading em { color: var(--color-primary); font-style: normal; }
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--color-border);
+    }
+    .split-col {
+      padding: 3rem 2.5rem;
+      position: relative;
+    }
+    .split-col:first-child {
+      border-right: 1px solid var(--color-border);
+    }
+    .split-col-label {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+    }
+    .split-col:first-child .split-col-label { color: #fff; }
+    .split-col:last-child  .split-col-label { color: var(--color-primary); }
+    .split-col-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .split-col-body {
+      color: var(--color-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .split-col-goal {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .split-col-goal::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--color-primary);
+    }
+    .split-divider {
+      position: absolute;
+      top: 50%;
+      left: -1px;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 60%;
+      background: linear-gradient(180deg, transparent, var(--color-primary), transparent);
+    }
+    .split-link {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    /* ═══════════════════════════════════════
+       COMPASS / VALUES SECTION
+    ═══════════════════════════════════════ */
+    #compass {
+      padding: var(--section-pad) 0;
+      background: var(--color-bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .compass-bg-watermark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(700px, 90vw);
+      opacity: 0.025;
+      pointer-events: none;
+    }
+    .compass-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .compass-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      color: #fff;
+    }
+    .compass-header p {
+      max-width: 580px;
+      margin: 1.25rem auto 0;
+      color: var(--color-muted);
+      line-height: 1.85;
+      font-style: italic;
+    }
+    /* 5-pointed compass grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      margin-top: 3.5rem;
+    }
+    .value-card {
+      background: var(--color-surface);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card:hover { background: rgba(126,184,201,0.04); }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--color-primary);
+      transition: height 0.4s ease;
+    }
+    .value-card:hover::after { height: 100%; }
+    /* Center card spans full width */
+    .value-card.center {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: rgba(201,168,76,0.05);
+      border-top: 1px solid var(--color-border);
+    }
+    .value-card.center::after { width: 100%; height: 2px; top: auto; bottom: 0; left: 0; }
+    .value-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .value-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .value-card.center h3 { color: var(--color-primary); font-size: 1.6rem; }
+    .value-card p {
+      color: var(--color-muted);
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER CTA SECTION
+    ═══════════════════════════════════════ */
+    #footer-cta {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+      position: relative;
+      background: var(--color-surface2);
+      overflow: hidden;
+      text-align: center;
+    }
+    #footer-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    }
+    .cta-horizon {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(201,168,76,0.08), transparent);
+      pointer-events: none;
+    }
+    #footer-cta .section-eyebrow { justify-content: center; }
+    #footer-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    #footer-cta h2 em {
+      font-style: italic;
+      color: var(--color-primary);
+    }
+    #footer-cta p {
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      color: var(--color-muted);
+      line-height: 1.8;
+    }
+    .cta-tagline {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      letter-spacing: 0.06em;
+      font-style: italic;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: #06090f;
+      border-top: 1px solid var(--color-border);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-primary);
+      letter-spacing: 0.08em;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      letter-spacing: 0.04em;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-nav a {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--color-primary); }
+
+    /* ─── Wave divider ─── */
+    .wave-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .clarity-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .clarity-visual { max-width: 500px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .split-grid { grid-template-columns: 1fr; }
+      .split-col:first-child { border-right: none; border-bottom: 1px solid var(--color-border); }
+      .values-grid { grid-template-columns: 1fr; }
+      .value-card.center { grid-column: auto; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .btn { width: 100%; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate], *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="progress-bar"></div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo" aria-label="Brightwork Consulting Home">
+    <!-- Anchor Icon -->
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="8" r="3" stroke="#c9a84c" stroke-width="1.5"/>
+      <line x1="16" y1="11" x2="16" y2="28" stroke="#c9a84c" stroke-width="1.5"/>
+      <path d="M8 14 C8 14 6 18 4 22 C7 22 10 21 12 20" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+      <path d="M24 14 C24 14 26 18 28 22 C25 22 22 21 20 20" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+      <line x1="10" y1="14" x2="22" y2="14" stroke="#c9a84c" stroke-width="1.5"/>
+    </svg>
+    Brightwork
+  </a>
+  <div class="nav-links">
+    <a href="#mentality">Our Approach</a>
+    <a href="#split">Philosophy</a>
+    <a href="#compass">Values</a>
+    <a href="#footer-cta" class="nav-cta btn">Schedule a Session</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#mentality">Our Approach</a>
+  <a href="#split">Philosophy</a>
+  <a href="#compass">Values</a>
+  <a href="#footer-cta" class="btn btn-primary" style="text-align:center;">Schedule a Session</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <!-- Stars -->
+  <div class="stars" id="stars-bg"></div>
+
+  <!-- Compass Rose Watermark -->
+  <div class="compass-bg" aria-hidden="true">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="white">
+      <polygon points="200,20 210,190 200,180 190,190"/>
+      <polygon points="200,380 210,210 200,220 190,210"/>
+      <polygon points="20,200 190,190 180,200 190,210"/>
+      <polygon points="380,200 210,190 220,200 210,210"/>
+      <polygon points="200,20 193,185 200,180 207,185"/>
+      <polygon points="200,380 193,215 200,220 207,215"/>
+      <polygon points="20,200 185,193 180,200 185,207"/>
+      <polygon points="380,200 215,193 220,200 215,207"/>
+      <!-- 45° points -->
+      <polygon points="314,86 214,196 206,188 224,178"/>
+      <polygon points="86,314 186,204 194,212 176,222"/>
+      <polygon points="86,86 196,186 188,194 178,176"/>
+      <polygon points="314,314 204,214 212,206 222,224"/>
+      <circle cx="200" cy="200" r="18" fill="none" stroke="white" stroke-width="2"/>
+      <circle cx="200" cy="200" r="30" fill="none" stroke="white" stroke-width="1" stroke-dasharray="4 6"/>
+      <circle cx="200" cy="200" r="60" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+      <circle cx="200" cy="200" r="90" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="3 9" opacity="0.4"/>
+      <circle cx="200" cy="200" r="130" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="tag">Operational Architecture &amp; Fractional Leadership</div>
+      <h1 class="hero-title">
+        Operational<br>Excellence Is the<br><em>Brightwork</em> of<br>Your Business.
+      </h1>
+      <p class="hero-definition">
+        In the maritime world, "Brightwork" refers to the polished brass and meticulous woodwork that demands constant, expert attention. It is the work that separates an exceptional vessel from an ordinary one.
+      </p>
+      <p class="hero-subtitle">
+        We partner with ambitious business owners to transform operational chaos into a <strong>competitive advantage</strong>. We don't just "consult"—we provide the <strong>Operational Architecture</strong> and fractional leadership support you need to achieve true business independence.
+      </p>
+      <div class="hero-btns">
+        <a href="#footer-cta" class="btn btn-primary">Secure Your Foundation</a>
+        <a href="#mentality" class="btn btn-outline">The Architect Mentality</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-horizon"></div>
+
+  <div class="hero-waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path class="wave1" d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="rgba(17,24,39,0.6)"/>
+      <path class="wave2" d="M0,80 C360,40 720,100 1080,60 C1260,40 1380,80 1440,70 L1440,120 L0,120 Z" fill="rgba(17,24,39,0.8)"/>
+    </svg>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- Wave Divider -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,25 C360,50 720,0 1080,25 C1260,37 1380,15 1440,25 L1440,50 L0,50 Z" fill="#111827"/>
+  </svg>
+</div>
+
+<!-- ═══ ARCHITECT MENTALITY ═══ -->
+<section id="mentality" data-animate>
+  <div class="container">
+    <div class="section-eyebrow">Our Approach</div>
+    <div class="mentality-intro">
+      <h2>The Architect Mentality</h2>
+      <p class="subhead">We Don't Just Fix Problems. We Design Systems.</p>
+      <p class="mentality-body">
+        In the maritime world, most consultants look for a "leak" and plug it. An <strong>Operational Architect</strong> looks at the hull, the rigging, and the engine to understand <em>why</em> the leak happened in the first place. We sit at the intersection of data and efficiency to ensure your business is more than just a "hustle"—it is a scalable machine.
+      </p>
+    </div>
+
+    <div class="pillars-header">The Three Pillars of Your Blueprint</div>
+
+    <div class="pillars-grid">
+      <!-- Pillar 1 -->
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="4" fill="currentColor"/>
+          <line x1="24" y1="6" x2="24" y2="14" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="24" y1="34" x2="24" y2="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="6" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="34" y1="24" x2="42" y2="24" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="24" y1="24" x2="32" y2="16" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <h3>The Data Curiosity</h3>
+        <p>We don't just pull reports; we perform <strong>"Deep Queries"</strong> for your whole structure and system. We find the "Why" in your operations, sales/marketing, and financial models to ensure every decision is anchored in reality and built for the long voyage.</p>
+      </div>
+      <!-- Pillar 2 -->
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="32" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="8" y1="18" x2="40" y2="18" stroke="currentColor" stroke-width="1"/>
+          <line x1="8" y1="28" x2="40" y2="28" stroke="currentColor" stroke-width="1"/>
+          <line x1="18" y1="8" x2="18" y2="40" stroke="currentColor" stroke-width="1"/>
+          <line x1="28" y1="8" x2="28" y2="40" stroke="currentColor" stroke-width="1"/>
+          <rect x="19" y="19" width="10" height="10" fill="currentColor" opacity="0.3"/>
+        </svg>
+        <h3>Structural Integrity</h3>
+        <p>If your software doesn't talk to your staff, your vessel isn't seaworthy. We build the <strong>"Operational Manual"</strong> and support systems that turn your personal chaos into strategic momentum.</p>
+      </div>
+      <!-- Pillar 3 -->
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 8 L38 16 L38 32 L24 40 L10 32 L10 16 Z" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M24 16 L32 20 L32 28 L24 32 L16 28 L16 20 Z" stroke="currentColor" stroke-width="1"/>
+          <line x1="24" y1="8" x2="24" y2="16" stroke="currentColor" stroke-width="1"/>
+          <line x1="24" y1="32" x2="24" y2="40" stroke="currentColor" stroke-width="1"/>
+          <line x1="10" y1="16" x2="16" y2="20" stroke="currentColor" stroke-width="1"/>
+          <line x1="32" y1="28" x2="38" y2="32" stroke="currentColor" stroke-width="1"/>
+          <circle cx="24" cy="24" r="3" fill="currentColor"/>
+        </svg>
+        <h3>The "How" for the Owner</h3>
+        <p>You have the vision and the dream; we provide the blueprint and the frame. We translate your high-level goals into the granular, systematic work required to build the machine you drive to reach your next milestone.</p>
+      </div>
+    </div>
+
+    <a href="#split" class="mentality-link">
+      Learn More About Our Services &amp; Partnerships
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <line x1="2" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width="1.5"/>
+        <polyline points="10,4 16,9 10,14" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- Wave Divider -->
+<div class="wave-divider" style="transform:scaleY(-1); background: var(--color-surface);">
+  <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,25 C360,50 720,0 1080,25 C1260,37 1380,15 1440,25 L1440,50 L0,50 Z" fill="#0a0f1a"/>
+  </svg>
+</div>
+
+<!-- ═══ CLARITY ═══ -->
+<section id="clarity" data-animate>
+  <div class="container">
+    <div class="clarity-inner">
+      <div class="clarity-text">
+        <div class="section-eyebrow">What We Do</div>
+        <h2>Strategic Clarity Meets Operational Independence</h2>
+        <div class="gold-rule"></div>
+        <p>Brightwork transforms chaos into advantage by anchoring visionary blueprints in meticulous execution. We perform deep queries to find clarity and build the automated systems required for sustainable independence.</p>
+      </div>
+      <div class="clarity-visual">
+        <div class="img-placeholder clarity-img" style="padding-bottom: 90%;">
+          <div class="img-placeholder__inner">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect x="4" y="4" width="32" height="32" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="13" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 28 L13 20 L20 26 L28 16 L36 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            <span>Team / Process Photo</span>
+            <small>Recommended: 800×720px</small>
+          </div>
+        </div>
+        <div class="compass-dial" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <circle cx="100" cy="100" r="90" stroke="white" stroke-width="0.5" stroke-dasharray="4 8"/>
+            <circle cx="100" cy="100" r="60" stroke="white" stroke-width="1" stroke-dasharray="2 6"/>
+            <circle cx="100" cy="100" r="20" stroke="white" stroke-width="1"/>
+            <line x1="100" y1="10" x2="100" y2="30" stroke="white" stroke-width="2"/>
+            <line x1="100" y1="170" x2="100" y2="190" stroke="white" stroke-width="2"/>
+            <line x1="10" y1="100" x2="30" y2="100" stroke="white" stroke-width="2"/>
+            <line x1="170" y1="100" x2="190" y2="100" stroke="white" stroke-width="2"/>
+            <polygon points="100,10 105,95 100,85 95,95" fill="white"/>
+            <polygon points="100,190 105,105 100,115 95,105" fill="white" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BRIGHTWORK SPLIT ═══ -->
+<section id="split" data-animate>
+  <div class="container">
+    <div class="split-heading">
+      <div class="section-eyebrow" style="justify-content:center;">Our Process &amp; Philosophy</div>
+      <h2>The <em>Brightwork</em> Split</h2>
+      <div class="gold-rule centered"></div>
+    </div>
+    <div class="split-grid">
+      <div class="split-col">
+        <div class="split-col-label">BRIGHT</div>
+        <div class="split-col-sub">The Visionary Architect</div>
+        <div style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-secondary);margin-bottom:1rem;">Foundation First, Then Flourish</div>
+        <p class="split-col-body">We bring clarity to your data. Using experience-driven insights, we identify the growth bottlenecks holding you back.</p>
+        <div class="split-col-goal">Goal: Strategic Clarity</div>
+      </div>
+      <div class="split-col" style="position:relative;">
+        <div class="split-divider"></div>
+        <div class="split-col-label">WORK</div>
+        <div class="split-col-sub">The Master Shipwright</div>
+        <div style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-secondary);margin-bottom:1rem;">Meticulous, Systematic Execution</div>
+        <p class="split-col-body">"Brightwork" is the labor-intensive detail ensuring longevity. We build the tech integrations and workflows that keep you running reliably.</p>
+        <div class="split-col-goal">Goal: Operational Independence</div>
+      </div>
+    </div>
+    <div class="split-link">
+      <a href="#compass" class="btn btn-outline">Learn More About Our Process &amp; Philosophy</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPASS / VALUES ═══ -->
+<section id="compass" data-animate>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="compass-header">
+      <div class="section-eyebrow" style="justify-content:center;">Our Foundation</div>
+      <h2>The Compass We Follow</h2>
+      <p>Our values are the fixed points that guide every voyage. Like the "brightwork" on a vessel, these principles require constant attention to ensure your business remains extraordinary.</p>
+    </div>
+
+    <!-- Compass Watermark -->
+    <div class="compass-bg-watermark" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="white">
+        <circle cx="200" cy="200" r="180" stroke="white" stroke-width="1" fill="none"/>
+        <circle cx="200" cy="200" r="120" stroke="white" stroke-width="0.5" fill="none" stroke-dasharray="5 10"/>
+        <circle cx="200" cy="200" r="60" stroke="white" stroke-width="1" fill="none"/>
+        <polygon points="200,20 208,192 200,180 192,192"/>
+        <polygon points="200,380 208,208 200,220 192,208"/>
+        <polygon points="20,200 192,192 180,200 192,208"/>
+        <polygon points="380,200 208,192 220,200 208,208"/>
+        <polygon points="314,86 208,198 202,192 216,184"/>
+        <polygon points="86,314 192,202 198,208 184,216"/>
+        <polygon points="86,86 198,192 192,198 184,184"/>
+        <polygon points="314,314 202,208 208,202 216,216"/>
+        <circle cx="200" cy="200" r="12" fill="white" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-number">01</div>
+        <h3>Collaborative Excellence</h3>
+        <p>The best operational architecture emerges when our systems meet your unique knowledge. We believe the best outcomes are created through genuine partnership, where we all row in the same direction.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">02</div>
+        <h3>Community Impact</h3>
+        <p>We are deeply invested in the small business ecosystem. Every business we strengthen builds our region's economic vitality, creating an environment where local businesses thrive together.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">03</div>
+        <h3>Experience-Driven Results</h3>
+        <p>Quality operational expertise delivers lasting value that far outlasts "quick fixes." We prioritize proven methodologies and meticulous execution over short-term savings.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-number">04</div>
+        <h3>Purposeful Growth</h3>
+        <p>"Foundation first, then flourish." Sustainable transformation requires intentional, systematic progress, where we value the building process as much as the growth outcomes.</p>
+      </div>
+      <div class="value-card center">
+        <div class="value-number" style="text-align:center;">✦</div>
+        <h3>Humble Leadership</h3>
+        <p style="max-width:560px;margin:0 auto;">True excellence comes from leaders who listen, learn, and lead by example. We partner with business owners who understand that true strength comes from building others up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave Divider -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#0d1520"/>
+  </svg>
+</div>
+
+<!-- ═══ FOOTER CTA ═══ -->
+<section id="footer-cta">
+  <div class="cta-horizon"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-eyebrow">Ready to Begin?</div>
+    <h2>Ready to Polish<br>Your <em>Operations?</em></h2>
+    <p>Stop the chaos and start building your legacy. Let's talk about your "Brightwork" today.</p>
+    <a href="mailto:hello@brightworkconsulting.com" class="btn btn-primary" style="font-size:1rem;padding:1.1rem 2.8rem;">
+      Schedule Your Strategy Session
+    </a>
+    <p class="cta-tagline">Taking Operational Chaos and making a Competitive Advantage for any business.</p>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="footer-brand">⚓ Brightwork Consulting</div>
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="#mentality">Our Approach</a>
+    <a href="#split">Philosophy</a>
+    <a href="#compass">Values</a>
+    <a href="#footer-cta">Contact</a>
+  </nav>
+  <p class="footer-copy">&copy; 2025 Brightwork Consulting. All rights reserved.</p>
+</footer>
+
+<!-- ─── Scripts ─── -->
+<script>
+  /* ── Stars ── */
+  (function() {
+    const container = document.getElementById('stars-bg');
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2 + 0.5;
+      s.style.cssText = `
+        width:${size}px;height:${size}px;
+        top:${Math.random()*100}%;left:${Math.random()*100}%;
+        animation-delay:${Math.random()*4}s;
+        animation-duration:${2 + Math.random()*3}s;
+      `;
+      container.appendChild(s);
+    }
+  })();
+
+  /* ── Scroll Progress ── */
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  });
+
+  /* ── Nav Shrink ── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  /* ── Cursor Glow ── */
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.setProperty('--cx', e.clientX + 'px');
+    glow.style.setProperty('--cy', e.clientY + 'px');
+  });
+
+  /* ── Intersection Observer ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+  /* ── Smooth Scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* ── Mobile Hamburger ── */
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('nav-drawer');
+  const overlay   = document.getElementById('drawer-overlay');
+  function closeDrawer() {
+    hamburger.classList.remove('active');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', () => {
+    const open = drawer.classList.contains('open');
+    if (open) { closeDrawer(); }
+    else {
+      hamburger.classList.add('active');
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+
+</body>
+</html>
