@@ -55,5 +55,15 @@ fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/28138_3901977554
 # Services page OG image
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/Screenshot-2026-06-02-101713.jpg" assets/images/services-og-image.jpg
 
+# About/Services/Contact hero backgrounds + footer background + Services
+# Crew-section video -- these were added directly (not via this script,
+# since their original wp-content URLs weren't captured during the
+# page-by-page content extraction). Listed here for reference only; if you
+# ever need to re-fetch them and know the real source URLs, add fetch()
+# lines following the pattern above. Already present in this repo:
+#   assets/images/2026-hero20-left.webp                     (Contact hero)
+#   assets/images/2026-hero4.webp                           (site-wide footer)
+#   assets/images/magnific_create-a-video_UyVgRfGwny.mp4    (Services "Crew" video)
+
 echo
 echo "Done. Review assets/images/, then: git add assets/images && git commit && git push"
