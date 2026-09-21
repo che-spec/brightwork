@@ -13,7 +13,7 @@ and effects — not the earlier draft layout files, which predated real
 photography and the wave/star effects. Progress:
 
 - [x] `index.html` — Home
-- [ ] `about.html` — About
+- [x] `about.html` — About
 - [ ] `services.html` — Services (new page; the old WordPress nav pointed at a
       file that was never provided, so this is being written from scratch
       using `reference/wordpress-export/our-services.html` as source copy)
@@ -65,6 +65,21 @@ rather than carried over — flagging them here in case they were intentional:
 - The hero slideshow image URLs included a stale `/staging/2433/` path
   segment not used by any other image on the site — stripped it to match the
   production upload path convention (see `scripts/fetch-assets.sh`).
+- **About page**: Phase 2 ("The Design") and Phase 3 ("The Integration") of
+  the process section shared a word-for-word duplicate bullet
+  ("Meticulous Integration") in the original export — almost certainly a
+  copy/paste mistake. Removed the duplicate from Phase 3 rather than
+  inventing new copy, so Phase 3 currently has 2 supporting bullets instead
+  of 3. If you want a third point there, it needs real copy from you (a
+  third distinct thing that happens during "The Integration").
+- **About page**: same `/staging/2433/`-path issue also appeared in the page's
+  JSON-LD structured data and in an Elementor shape-divider asset URL — both
+  fixed the same way as Home.
+- Che Newton's headshot filename in the export
+  (`28138_390197755495_538260495_4550325_5837766_n...`) looks like a raw old
+  Facebook/CDN export name, unlike Rachel's professional-shoot filename
+  (`A07A5207-copy-scaled-1...`). Worth confirming this is actually the
+  current, intended photo before launch.
 
 ## Deploying to Cloudflare Pages
 

@@ -40,8 +40,17 @@ fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/SWAM_LOGO-300x11
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/2026-logo-badge-dark-1-fill-85x85.png"  assets/images/favicon-32.png
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/2026-logo-badge-dark-1-fill-300x300.png" assets/images/favicon-192.png
 
-# Open Graph share image
+# Open Graph share images
 fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/Screenshot-2026-06-02-101658.jpg" assets/images/og-image.jpg
+fetch "https://brightworkconsult.com/wp-content/uploads/2026/06/Screenshot-2026-05-29-030743.jpg"  assets/images/about-og-image.jpg
+
+# About page -- team headshots
+# NOTE: Che's source filename (28138_390197755495_538260495_4550325_5837766_n...)
+# looks like an old raw Facebook/CDN export name rather than a professional
+# headshot filename like Rachel's (A07A5207-copy-scaled-1...) -- worth
+# confirming this is actually the current/intended photo before going live.
+fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/A07A5207-copy-scaled-1-560x560.jpg" assets/images/team-rachel.jpg
+fetch "https://brightworkconsult.com/wp-content/uploads/2026/05/28138_390197755495_538260495_4550325_5837766_n-560x480.jpg" assets/images/team-che.jpg
 
 echo
 echo "Done. Review assets/images/, then: git add assets/images && git commit && git push"
